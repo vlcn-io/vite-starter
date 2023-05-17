@@ -1,15 +1,15 @@
-import { CtxAsync, useCachedState, useQuery } from "@vlcn.io/react";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import vlcnLogo from './assets/vlcn.png'
-import './App.css'
+import { CtxAsync, useQuery } from "@vlcn.io/react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import vlcnLogo from "./assets/vlcn.png";
+import "./App.css";
 import randomWords from "./support/randomWords.js";
 import { DBAsync } from "@vlcn.io/xplat-api";
 
 type TestRecord = { id: string; name: string };
 const wordOptions = { exactly: 3, join: " " };
 
-function App({ctx}: {ctx: CtxAsync}) {
+function App({ ctx }: { ctx: CtxAsync }) {
   const data = useQuery<TestRecord>(
     ctx,
     "SELECT * FROM test ORDER BY id DESC"
@@ -41,12 +41,10 @@ function App({ctx}: {ctx: CtxAsync}) {
       </div>
       <h1>Vite + React + Vulcan</h1>
       <div className="card">
-        <button onClick={addData} style={{marginRight: 24}}>
+        <button onClick={addData} style={{ marginRight: 24 }}>
           Add Data
         </button>
-        <button onClick={dropData}>
-          Drop Data
-        </button>
+        <button onClick={dropData}>Drop Data</button>
         <table>
           <thead>
             <tr>
@@ -58,7 +56,9 @@ function App({ctx}: {ctx: CtxAsync}) {
             {data.map((row) => (
               <tr key={row.id}>
                 <td>{row.id}</td>
-                <td><EditableItem db={ctx.db} id={row.id} value={row.name} /></td>
+                <td>
+                  <EditableItem db={ctx.db} id={row.id} value={row.name} />
+                </td>
               </tr>
             ))}
           </tbody>
@@ -71,19 +71,25 @@ function App({ctx}: {ctx: CtxAsync}) {
         Click on the Vite, React and Vulcan logos to learn more
       </p>
     </>
-  )
-}
-
-function EditableItem({db, id, value}: {db: DBAsync, id: string, value: string}) {
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    db.exec("UPDATE test SET name = ? WHERE id = ?;", [e.target.value, id]);
-
-  return (
-    <input type="text" value={value} onChange={onChange} />
   );
 }
 
-export default App
+function EditableItem({
+  db,
+  id,
+  value,
+}: {
+  db: DBAsync;
+  id: string;
+  value: string;
+}) {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    db.exec("UPDATE test SET name = ? WHERE id = ?;", [e.target.value, id]);
+
+  return <input type="text" value={value} onChange={onChange} />;
+}
+
+export default App;
 
 const nanoid = (t = 21) =>
   crypto
