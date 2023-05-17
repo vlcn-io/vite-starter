@@ -1,5 +1,5 @@
 /**
- * During the deploy step, this script will slurp all the schemas in the
+ * During the build step, this script will slurp all the schemas in the
  * schemas directory and insert them into the service database.
  *
  * This allows the service to dnymically load schemas and apply schemas
@@ -16,7 +16,7 @@ import path from "path";
 
 const dir = "./src/schemas";
 
-export default async function slurp() {
+async function slurp() {
   const schemas = await Promise.all(
     fs.readdirSync(dir).map((file) => {
       const filePath = path.join(dir, file);
@@ -43,3 +43,5 @@ export default async function slurp() {
     }
   })();
 }
+
+slurp();
