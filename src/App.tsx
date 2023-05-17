@@ -17,7 +17,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
         <a href="https://vlcn.io" target="_blank">
-          <img src={vlcnLogo} className="logo react" alt="Vulcan logo" />
+          <img src={vlcnLogo} className="logo vlcn" alt="Vulcan logo" />
         </a>
       </div>
       <h1>Vite + React + Vulcan</h1>
