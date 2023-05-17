@@ -12,4 +12,6 @@ What you get:
 - A database schema file ([schema.mjs](https://github.com/vlcn-io/vite-starter/blob/main/src/schemas/testSchema.mjs)) that is automatically applied and migrated to on server startup and on change on the client.
 
 
-[![example scaffolding result](https://img.youtube.com/vi/QJBQLYmXReI/0.jpg)](https://www.youtube.com/watch?v=QJBQLYmXReI)
+Demo Video: [![example scaffolding result](https://img.youtube.com/vi/QJBQLYmXReI/0.jpg)](https://www.youtube.com/watch?v=QJBQLYmXReI)
+
+Demo App (to be deployed):
