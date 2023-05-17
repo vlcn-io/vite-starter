@@ -41,7 +41,7 @@ function App({ ctx }: { ctx: CtxAsync }) {
       </div>
       <h1>Vite + React + Vulcan</h1>
       <div className="card">
-        <button onClick={addData} style={{ marginRight: 24 }}>
+        <button onClick={addData} style={{ marginRight: 40 }}>
           Add Data
         </button>
         <button onClick={dropData}>Drop Data</button>
@@ -65,6 +65,13 @@ function App({ ctx }: { ctx: CtxAsync }) {
         </table>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+        <p>
+          Open another browser and navigate to{" "}
+          <a href={window.location.href} target="_blank">
+            this window's url
+          </a>{" "}
+          to test sync.
         </p>
       </div>
       <p className="read-the-docs">
