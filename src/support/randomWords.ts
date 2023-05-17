@@ -246,7 +246,9 @@ var wordList = [
   "your","yourself","youth","zero","zebra","zipper","zoo","zulu"
 ];
 
-export default function words(options) {
+export default function words(
+  options: any
+) {
 
   function word() {
     if (options && options.maxLength > 1) {
@@ -261,7 +263,7 @@ export default function words(options) {
     var wordUsed;
     while (!rightSize) {  
       wordUsed = generateRandomWord();
-      if(wordUsed.length <= options.maxLength) {
+      if(wordUsed.length <= (options.maxLength)) {
         rightSize = true;
       }
 
@@ -273,7 +275,7 @@ export default function words(options) {
     return wordList[randInt(wordList.length)];
   }
 
-  function randInt(lessThan) {
+  function randInt(lessThan: number) {
     return Math.floor(Math.random() * lessThan);
   }
 
@@ -300,7 +302,7 @@ export default function words(options) {
 
   //not a function = returns the raw word
   if (typeof(options.formatter) !== 'function') {
-    options.formatter = (word) => word;
+    options.formatter = (word: string) => word;
   }
 
   //not a string = separator is a space
@@ -309,7 +311,7 @@ export default function words(options) {
   }
 
   var total = options.min + randInt(options.max + 1 - options.min);
-  var results = [];
+  var results: any = [];
   var token = '';
   var relativeIndex = 0;
 

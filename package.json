@@ -16,6 +16,7 @@
     "@vlcn.io/direct-connect-nodejs": "link:../crsqlite/js/packages/direct-connect-nodejs",
     "@vlcn.io/react": "link:../crsqlite/js/packages/react",
     "@vlcn.io/rx-tbl": "link:../crsqlite/js/packages/rx-tbl",
+    "@vlcn.io/xplat-api": "link:../crsqlite/js/packages/xplat-api",
     "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

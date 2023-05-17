@@ -19,6 +19,9 @@ dependencies:
   '@vlcn.io/rx-tbl':
     specifier: link:../crsqlite/js/packages/rx-tbl
     version: link:../crsqlite/js/packages/rx-tbl
+  '@vlcn.io/xplat-api':
+    specifier: link:../crsqlite/js/packages/xplat-api
+    version: link:../crsqlite/js/packages/xplat-api
   express:
     specifier: ^4.18.2
     version: 4.18.2

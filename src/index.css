@@ -55,6 +55,34 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 80px;
+}
+
+table input {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 8px;
+  font-size: 1em;
+}
+
+table input:focus {
+  background: grey;
+}
+
+thead {
+  font-size: 24px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
