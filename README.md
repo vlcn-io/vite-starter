@@ -1,5 +1,7 @@
 # vite-starter
 
+Note: this is still linked against my local pnpm workspace. Will publish packages shortly.
+
 ```
 git clone git@github.com:vlcn-io/vite-starter.git
 pnpm install
