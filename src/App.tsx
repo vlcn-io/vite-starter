@@ -41,7 +41,7 @@ function App({ ctx }: { ctx: CtxAsync }) {
       </div>
       <h1>Vite + React + Vulcan</h1>
       <div className="card">
-        <button onClick={addData} style={{ marginRight: 40 }}>
+        <button onClick={addData} style={{ marginRight: "1em" }}>
           Add Data
         </button>
         <button onClick={dropData}>Drop Data</button>
