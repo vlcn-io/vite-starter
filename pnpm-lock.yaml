@@ -5,8 +5,8 @@ dependencies:
     specifier: ^0.10.1
     version: 0.10.1
   '@vlcn.io/direct-connect-browser':
-    specifier: ^0.0.2
-    version: 0.0.2
+    specifier: ^0.0.4
+    version: 0.0.4
   '@vlcn.io/direct-connect-common':
     specifier: ^0.1.1
     version: 0.1.1
@@ -773,8 +773,8 @@ packages:
     requiresBuild: true
     dev: false
 
-  /@vlcn.io/direct-connect-browser@0.0.2:
-    resolution: {integrity: sha512-bjOWHJQcppwFvUSysoG0qGXwiG2gWhjDhQoWAKgLifAbnqGt6XWMy6DuXBTLMM0pwd0tBsIAxfPrzMu6rqdd7g==}
+  /@vlcn.io/direct-connect-browser@0.0.4:
+    resolution: {integrity: sha512-pvQqJxXDZtq4jI5Tl7b/857KazMqXatIQdhTJTE2dbTYEN1pPw3z4Bju1lMvvUHHK4GmzUv0cB5HVHEtvRsfVA==}
     dependencies:
       '@vlcn.io/crsqlite-wasm': 0.10.1
       '@vlcn.io/direct-connect-common': 0.1.1
