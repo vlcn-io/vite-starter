@@ -1,4 +1,4 @@
-import { CtxAsync, useQuery } from "@vlcn.io/react";
+import { CtxAsync, useCachedState, useQuery } from "@vlcn.io/react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import vlcnLogo from "./assets/vlcn.png";
@@ -90,10 +90,24 @@ function EditableItem({
   id: string;
   value: string;
 }) {
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    db.exec("UPDATE test SET name = ? WHERE id = ?;", [e.target.value, id]);
+  // Generally you will not need to use `useCachedState`. It is only required for highly interactive components
+  // that write to the database on every interaction (e.g., keystroke or drag) or in cases where you want
+  // to de-bounce your writes to the DB.
+  //
+  // `useCachedState` will never be required once when one of the following is true:
+  // a. We complete the synchronous Reactive SQL layer (SQLiteRX)
+  // b. We figure out how to get SQLite-WASM to do a write + read round-trip in a single event loop tick
+  const [cachedValue, setCachedValue] = useCachedState(value);
+  const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCachedValue(e.target.value);
+    // You could de-bounce your write to the DB here if so desired.
+    return db.exec("UPDATE test SET name = ? WHERE id = ?;", [
+      e.target.value,
+      id,
+    ]);
+  };
 
-  return <input type="text" value={value} onChange={onChange} />;
+  return <input type="text" value={cachedValue} onChange={onChange} />;
 }
 
 export default App;

@@ -5,8 +5,8 @@ dependencies:
     specifier: ^0.10.1
     version: 0.10.1
   '@vlcn.io/direct-connect-browser':
-    specifier: ^0.0.5
-    version: 0.0.5
+    specifier: ^0.0.6
+    version: 0.0.6
   '@vlcn.io/direct-connect-common':
     specifier: ^0.1.1
     version: 0.1.1
@@ -14,8 +14,8 @@ dependencies:
     specifier: ^0.1.1
     version: 0.1.1
   '@vlcn.io/react':
-    specifier: ^0.10.1
-    version: 0.10.1(react@18.2.0)
+    specifier: ^0.10.2
+    version: 0.10.2(react@18.2.0)
   '@vlcn.io/rx-tbl':
     specifier: ^0.9.1
     version: 0.9.1
@@ -773,8 +773,8 @@ packages:
     requiresBuild: true
     dev: false
 
-  /@vlcn.io/direct-connect-browser@0.0.5:
-    resolution: {integrity: sha512-EfG+RG+Lgbdn8G+NpfyyLOqe0lMR4xBgeYTrgSsd9Qe9YyHoLu6zFmlRHLcBRekWBIet/dSIrD3q3azt9T2yZQ==}
+  /@vlcn.io/direct-connect-browser@0.0.6:
+    resolution: {integrity: sha512-mNy45yB0IZw72kScKpxk5qaADJCLiPNRGmJLtFE7irh3jmeXGUZWviOGnRheXSq/rx9AYjaaEepnt4qHtMfP4Q==}
     dependencies:
       '@vlcn.io/crsqlite-wasm': 0.10.1
       '@vlcn.io/direct-connect-common': 0.1.1
@@ -799,8 +799,8 @@ packages:
       throttle-debounce: 5.0.0
     dev: false
 
-  /@vlcn.io/react@0.10.1(react@18.2.0):
-    resolution: {integrity: sha512-LtqMQxHyzgahOT7DDoHXqQcorNjZpIuRnWmz4BookpnH7aqRuWAnyVTEd3VONB9of9T/jlVRQ49Vd2zCGMEvMw==}
+  /@vlcn.io/react@0.10.2(react@18.2.0):
+    resolution: {integrity: sha512-6zvHGCC/q5eZRbC1r5UHq2vxwx55k8aghCQcW+Msz8Mifn73xzt4cC3Afx71KJS8Dl82fHgWSFi31uCYSqlbOw==}
     peerDependencies:
       react: ^18
     dependencies:
@@ -899,7 +899,7 @@ packages:
   /async-mutex@0.4.0:
     resolution: {integrity: sha512-eJFZ1YhRR8UN8eBLoNzcDPcy/jqjsg6I1AP+KvWQX80BqOSW1oJPJXDylPUEeMr2ZQvHgnQ//Lp6f3RQ1zI7HA==}
     dependencies:
-      tslib: 2.5.1
+      tslib: 2.5.2
     dev: false
 
   /balanced-match@1.0.2:
@@ -2367,8 +2367,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib@2.5.1:
-    resolution: {integrity: sha512-KaI6gPil5m9vF7DKaoXxx1ia9fxS4qG5YveErRRVknPDXXriu5M8h48YRjB6h5ZUOKuAKlSJYb0GaDe8I39fRw==}
+  /tslib@2.5.2:
+    resolution: {integrity: sha512-5svOrSA2w3iGFDs1HibEVBGbDrAY82bFQ3HZ3ixB+88nsbsWQoKqDRb5UBYAUPEzbBn6dAp5gRNXglySbx1MlA==}
     dev: false
 
   /tsutils@3.21.0(typescript@5.0.2):
