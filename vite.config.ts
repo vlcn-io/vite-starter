@@ -1,10 +1,10 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    target: "esnext"
+    target: "esnext",
   },
   optimizeDeps: {
     esbuildOptions: {
@@ -12,4 +12,9 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-})
+  server: {
+    fs: {
+      strict: false,
+    },
+  },
+});
