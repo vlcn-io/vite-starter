@@ -9,6 +9,9 @@ import {
 import { JsonSerializer } from "@vlcn.io/direct-connect-common";
 import { spawn } from "child_process";
 import cors from "cors";
+import { createHash } from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
 
 const PORT = parseInt(process.env.PORT || "8080");
 
@@ -90,9 +93,22 @@ app.listen(PORT, () =>
   console.log(`Server listening at http://localhost:${PORT}`)
 );
 
-// if process args contain the dev flag, fork off `vite` to serve the frontend
+// If process args contain the dev flag, fork off `vite` to serve the frontend.
+// We do some WASM copying here to make vite happy as `vite` currently has a bug related to loading
+// a WASM file from a dependency on the dev server. `vite` builds work fine though.
 if (process.argv.includes("--dev")) {
-  // also create a symlink to the wasm file so vite can find it
+  // read the wasm file from public/node_modules/.vite/deps/crsqlite.wasm and hash it via getHash
+  const wasmHash = getHash(
+    fs.readFileSync(
+      path.join(".", "public", "node_modules", ".vite", "deps", "crsqlite.wasm")
+    )
+  );
+  // now create a sym link from public/node_modules/.vite/deps/crsqlite.wasm to public/assets/crsqlite-${wasmHash}.wasm
+  fs.symlinkSync(
+    path.join("..", "node_modules", ".vite", "deps", "crsqlite.wasm"),
+    path.join(".", "public", "assets", `crsqlite-${wasmHash}.wasm`),
+    "file"
+  );
   const vite = spawn("./node_modules/.bin/vite", {
     stdio: "inherit",
   });
@@ -116,4 +132,8 @@ function makeSafe(handler) {
       res.status(500).json({ error: err.message });
     }
   };
+}
+
+function getHash(text) {
+  return createHash("sha256").update(text).digest("hex").substring(0, 8);
 }
