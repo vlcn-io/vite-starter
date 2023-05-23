@@ -1,5 +1,4 @@
 import express from "express";
-import ViteExpress from "vite-express";
 import {
   SyncService,
   DBCache,
@@ -8,6 +7,7 @@ import {
   DefaultConfig,
 } from "@vlcn.io/direct-connect-nodejs";
 import { JsonSerializer } from "@vlcn.io/direct-connect-common";
+import { spawn } from "child_process";
 
 const PORT = parseInt(process.env.PORT || "8080");
 
@@ -21,6 +21,9 @@ const dbCache = new DBCache(DefaultConfig, (name, version) => {
 const fsNotify = new FSNotify(DefaultConfig, dbCache);
 const syncSvc = new SyncService(DefaultConfig, dbCache, svcDb, fsNotify);
 const serializer = new JsonSerializer();
+
+app.use(express.static("public"));
+app.use(express.static("dist"));
 
 app.post(
   "/sync/changes",
@@ -76,9 +79,21 @@ app.get(
   })
 );
 
-ViteExpress.listen(app, PORT, () =>
-  console.log(`Listening at http://localhost:${PORT}`)
+app.listen(PORT, () =>
+  console.log(`Server listening at http://localhost:${PORT}`)
 );
+
+// if process args contain the dev flag, fork off `vite` to serve the frontend
+if (process.argv.includes("--dev")) {
+  // also create a symlink to the wasm file so vite can find it
+  const vite = spawn("./node_modules/.bin/vite", {
+    stdio: "inherit",
+  });
+  vite.on("close", (code) => {
+    console.log(`vite exited with code ${code}`);
+    process.exit(code);
+  });
+}
 
 /**
  *

@@ -7,6 +7,7 @@ export default defineConfig({
     target: "esnext",
   },
   optimizeDeps: {
+    exclude: ["@vite/client", "@vite/env"],
     esbuildOptions: {
       target: "esnext",
     },
