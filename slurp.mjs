@@ -45,3 +45,13 @@ async function slurp() {
 }
 
 slurp();
+// try {
+//   // Fix a vite bug where `dev` mode does not correctly import the wasm file.
+//   fs.symlinkSync(
+//     path.join("..", "..", "@vlcn.io", "crsqlite-wasm", "dist", "crsqlite.wasm"),
+//     path.join(".", "node_modules", ".vite", "deps", "crsqlite.wasm"),
+//     "file"
+//   );
+// } catch (e) {
+//   console.error(e);
+// }

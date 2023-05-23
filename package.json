@@ -4,24 +4,23 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node ./slurp.mjs && node ./server.js",
-    "start": "node ./slurp.mjs && NODE_ENV=production node ./server.js",
+    "dev": "node ./slurp.mjs && node ./server.js --dev",
+    "start": "node ./slurp.mjs && node ./server.js",
     "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "@vlcn.io/crsqlite-wasm": "^0.10.1",
-    "@vlcn.io/direct-connect-browser": "^0.0.6",
+    "@vlcn.io/crsqlite-wasm": "^0.10.2-next.1",
+    "@vlcn.io/direct-connect-browser": "^0.0.7-next.5",
+    "@vlcn.io/react": "^0.10.3-next.4",
     "@vlcn.io/direct-connect-common": "^0.1.1",
-    "@vlcn.io/direct-connect-nodejs": "^0.1.1",
-    "@vlcn.io/react": "^0.10.2",
+    "@vlcn.io/direct-connect-nodejs": "^0.1.2-next.0",
     "@vlcn.io/rx-tbl": "^0.9.1",
     "@vlcn.io/xplat-api": "^0.9.1",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "vite-express": "^0.7.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

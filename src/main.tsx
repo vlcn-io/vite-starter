@@ -2,13 +2,10 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-import { WorkerInterface, newDbid } from "@vlcn.io/direct-connect-browser";
-import workerUrl from "@vlcn.io/direct-connect-browser/shared.worker.js?url";
-import wasmUrl from "@vlcn.io/crsqlite-wasm/crsqlite.wasm?url";
-import initWasm from "@vlcn.io/crsqlite-wasm";
-import tblrx from "@vlcn.io/rx-tbl";
-// @ts-ignore
-import testSchema from "./schemas/testSchema.mjs";
+import { newDbid } from "@vlcn.io/direct-connect-browser";
+import schema from "./schemas/testSchema.mjs";
+import { endpoints } from "./SyncEndpoints.ts";
+import { DBProvider } from "@vlcn.io/react";
 
 /**
  * Returns the ID of a remote database to sync with or creates a new one
@@ -32,46 +29,18 @@ function getRemoteDbid(hash: HashBag): string {
 }
 
 const hash = parseHash();
-const remoteDbid = getRemoteDbid(hash);
-if (remoteDbid != hash.dbid) {
-  hash.dbid = remoteDbid;
+const dbid = getRemoteDbid(hash);
+if (dbid != hash.dbid) {
+  hash.dbid = dbid;
   window.location.hash = writeHash(hash);
 }
-localStorage.setItem("remoteDbid", remoteDbid);
-
-// Now that we have a remote dbid, we can open our corresponding local db.
-const sqlite = await initWasm(() => wasmUrl);
-const db = await sqlite.open(remoteDbid);
-
-// Automigrate our local db to the schema we want to use.
-await db.automigrateTo(testSchema.name, testSchema.content);
-
-// Install the reactivity extensions for our local db.
-const rx = tblrx(db);
-
-// Start the sync worker which will sync our local changes to the remote db.
-const syncWorker = new WorkerInterface(workerUrl, wasmUrl);
-syncWorker.startSync(
-  remoteDbid as any,
-  {
-    createOrMigrate: new URL("/sync/create-or-migrate", window.location.origin),
-    applyChanges: new URL("/sync/changes", window.location.origin),
-    startOutboundStream: new URL(
-      "/sync/start-outbound-stream",
-      window.location.origin
-    ),
-  },
-  rx
-);
+localStorage.setItem("remoteDbid", dbid);
 
 // Launch our app.
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <App
-    ctx={{
-      db,
-      rx,
-    }}
-  />
+  <DBProvider dbid={dbid} schema={schema} endpoints={endpoints}>
+    <App dbid={dbid} />
+  </DBProvider>
 );
 
 type HashBag = { [key: string]: string };

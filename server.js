@@ -1,5 +1,4 @@
 import express from "express";
-import ViteExpress from "vite-express";
 import {
   SyncService,
   DBCache,
@@ -8,11 +7,14 @@ import {
   DefaultConfig,
 } from "@vlcn.io/direct-connect-nodejs";
 import { JsonSerializer } from "@vlcn.io/direct-connect-common";
+import { spawn } from "child_process";
+import cors from "cors";
 
 const PORT = parseInt(process.env.PORT || "8080");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const svcDb = new ServiceDB(DefaultConfig, true);
 const dbCache = new DBCache(DefaultConfig, (name, version) => {
@@ -21,6 +23,12 @@ const dbCache = new DBCache(DefaultConfig, (name, version) => {
 const fsNotify = new FSNotify(DefaultConfig, dbCache);
 const syncSvc = new SyncService(DefaultConfig, dbCache, svcDb, fsNotify);
 const serializer = new JsonSerializer();
+
+// serve the frontend in production
+if (!process.argv.includes("--dev")) {
+  app.use(express.static("public"));
+  app.use(express.static("dist"));
+}
 
 app.post(
   "/sync/changes",
@@ -76,9 +84,19 @@ app.get(
   })
 );
 
-ViteExpress.listen(app, PORT, () =>
-  console.log(`Listening at http://localhost:${PORT}`)
+app.listen(PORT, () =>
+  console.log(`Server listening at http://localhost:${PORT}`)
 );
+
+if (process.argv.includes("--dev")) {
+  const vite = spawn("./node_modules/.bin/vite", {
+    stdio: "inherit",
+  });
+  vite.on("close", (code) => {
+    console.log(`vite exited with code ${code}`);
+    process.exit(code);
+  });
+}
 
 /**
  *
