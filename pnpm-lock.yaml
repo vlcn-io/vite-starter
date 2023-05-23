@@ -5,8 +5,8 @@ dependencies:
     specifier: ^0.10.2-next.1
     version: 0.10.2-next.1
   '@vlcn.io/direct-connect-browser':
-    specifier: ^0.0.7-next.2
-    version: 0.0.7-next.2
+    specifier: ^0.0.7-next.5
+    version: 0.0.7-next.5
   '@vlcn.io/direct-connect-common':
     specifier: ^0.1.1
     version: 0.1.1
@@ -14,8 +14,8 @@ dependencies:
     specifier: ^0.1.2-next.0
     version: 0.1.2-next.0
   '@vlcn.io/react':
-    specifier: ^0.10.3-next.1
-    version: 0.10.3-next.1(react@18.2.0)
+    specifier: ^0.10.3-next.4
+    version: 0.10.3-next.4(react@18.2.0)
   '@vlcn.io/rx-tbl':
     specifier: ^0.9.1
     version: 0.9.1
@@ -803,8 +803,8 @@ packages:
     requiresBuild: true
     dev: false
 
-  /@vlcn.io/direct-connect-browser@0.0.7-next.2:
-    resolution: {integrity: sha512-vj+AlYLvUwhB3m78mYvQSpOVm39N5E/a/GVMl2Dws7oiviMadHWVQpnYMkN/orW1T6FYtBUmarEFa/IJtbX8Qg==}
+  /@vlcn.io/direct-connect-browser@0.0.7-next.5:
+    resolution: {integrity: sha512-wmW41Y1NbiLhCvyC3wbDOyL2uL8MBlT25b+/LuoFkplBhXJSSxPsL4L5w1R8KaRA52I8j3SgRlM6LGUYFYgCOg==}
     dependencies:
       '@vlcn.io/crsqlite-wasm': 0.10.2-next.0
       '@vlcn.io/direct-connect-common': 0.1.1
@@ -829,13 +829,13 @@ packages:
       throttle-debounce: 5.0.0
     dev: false
 
-  /@vlcn.io/react@0.10.3-next.1(react@18.2.0):
-    resolution: {integrity: sha512-PyB5MVfF6CucbSvFcA3tFynr/Un6RLdaHypStjhrQ0nWgdj4f/eX8V2aenA6Hx17SgceNc6zDWaLOd8fpNvt5g==}
+  /@vlcn.io/react@0.10.3-next.4(react@18.2.0):
+    resolution: {integrity: sha512-ZnybgYnj2Lx1guqQTERYyTb5/5eAp9D7q9j/6ujOcp5bsNDG2VoRhynSu8fSHdANexb+YFPl9borJQUafh9hfg==}
     peerDependencies:
       react: ^18
     dependencies:
       '@vlcn.io/crsqlite-wasm': 0.10.2-next.0
-      '@vlcn.io/direct-connect-browser': 0.0.7-next.2
+      '@vlcn.io/direct-connect-browser': 0.0.7-next.5
       '@vlcn.io/rx-tbl': 0.9.1
       '@vlcn.io/xplat-api': 0.9.1
       react: 18.2.0

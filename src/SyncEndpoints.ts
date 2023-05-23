@@ -9,7 +9,8 @@ export const endpoints = {
   startOutboundStream: updatePort(
     new URL("/sync/start-outbound-stream", window.location.origin)
   ),
-  worker,
+  // this conditional on dev mode is to work around a bug in Vite.
+  worker: import.meta.env.DEV ? worker : undefined,
   wasm,
 };
 
