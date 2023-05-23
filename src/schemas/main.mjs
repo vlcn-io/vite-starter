@@ -1,6 +1,6 @@
 export default {
   namespace: "default",
-  name: "testSchema",
+  name: "main",
   active: true,
   content: `
     CREATE TABLE IF NOT EXISTS test (id PRIMARY KEY, name TEXT);

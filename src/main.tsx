@@ -3,7 +3,7 @@ import App from "./App.tsx";
 import "./index.css";
 
 import { newDbid } from "@vlcn.io/direct-connect-browser";
-import schema from "./schemas/testSchema.mjs";
+import schema from "./schemas/main.mjs";
 import { endpoints } from "./SyncEndpoints.ts";
 import { DBProvider } from "@vlcn.io/react";
 
