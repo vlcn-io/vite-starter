@@ -8,6 +8,7 @@ import {
 } from "@vlcn.io/direct-connect-nodejs";
 import { JsonSerializer } from "@vlcn.io/direct-connect-common";
 import { spawn } from "child_process";
+import cors from "cors";
 
 const PORT = parseInt(process.env.PORT || "8080");
 
@@ -22,11 +23,15 @@ const fsNotify = new FSNotify(DefaultConfig, dbCache);
 const syncSvc = new SyncService(DefaultConfig, dbCache, svcDb, fsNotify);
 const serializer = new JsonSerializer();
 
-app.use(express.static("public"));
-app.use(express.static("dist"));
+// serve the frontend in production
+if (!process.argv.includes("--dev")) {
+  app.use(express.static("public"));
+  app.use(express.static("dist"));
+}
 
 app.post(
   "/sync/changes",
+  cors(),
   makeSafe(async (req, res) => {
     const msg = serializer.decode(req.body);
     const ret = await syncSvc.applyChanges(msg);
@@ -36,6 +41,7 @@ app.post(
 
 app.post(
   "/sync/create-or-migrate",
+  cors(),
   makeSafe(async (req, res) => {
     const msg = serializer.decode(req.body);
     const ret = await syncSvc.createOrMigrateDatabase(msg);
@@ -45,6 +51,7 @@ app.post(
 
 app.get(
   "/sync/start-outbound-stream",
+  cors(),
   makeSafe(async (req, res) => {
     console.log("Start outbound stream");
     const msg = serializer.decode(
