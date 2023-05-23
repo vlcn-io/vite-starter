@@ -17,6 +17,7 @@ const PORT = parseInt(process.env.PORT || "8080");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const svcDb = new ServiceDB(DefaultConfig, true);
 const dbCache = new DBCache(DefaultConfig, (name, version) => {
@@ -34,7 +35,6 @@ if (!process.argv.includes("--dev")) {
 
 app.post(
   "/sync/changes",
-  cors(),
   makeSafe(async (req, res) => {
     const msg = serializer.decode(req.body);
     const ret = await syncSvc.applyChanges(msg);
@@ -44,7 +44,6 @@ app.post(
 
 app.post(
   "/sync/create-or-migrate",
-  cors(),
   makeSafe(async (req, res) => {
     const msg = serializer.decode(req.body);
     const ret = await syncSvc.createOrMigrateDatabase(msg);
@@ -54,7 +53,6 @@ app.post(
 
 app.get(
   "/sync/start-outbound-stream",
-  cors(),
   makeSafe(async (req, res) => {
     console.log("Start outbound stream");
     const msg = serializer.decode(
@@ -103,12 +101,16 @@ if (process.argv.includes("--dev")) {
       path.join(".", "public", "node_modules", ".vite", "deps", "crsqlite.wasm")
     )
   );
+
   // now create a sym link from public/node_modules/.vite/deps/crsqlite.wasm to public/assets/crsqlite-${wasmHash}.wasm
-  fs.symlinkSync(
-    path.join("..", "node_modules", ".vite", "deps", "crsqlite.wasm"),
-    path.join(".", "public", "assets", `crsqlite-${wasmHash}.wasm`),
-    "file"
-  );
+  try {
+    fs.symlinkSync(
+      path.join("..", "node_modules", ".vite", "deps", "crsqlite.wasm"),
+      path.join(".", "public", "assets", `crsqlite-${wasmHash}.wasm`),
+      "file"
+    );
+  } catch (e) {}
+
   const vite = spawn("./node_modules/.bin/vite", {
     stdio: "inherit",
   });
