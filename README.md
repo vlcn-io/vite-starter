@@ -1,5 +1,6 @@
 # vite-starter
 
+> ⚠️ Note: automigration currently does not work in WASM. Working on it.
 
 ```
 git clone git@github.com:vlcn-io/vite-starter.git
