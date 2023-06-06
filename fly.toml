@@ -1,41 +1,45 @@
-app = "vite-starter"
-kill_signal = "SIGINT"
-kill_timeout = 5
-primary_region = "iad"
-processes = []
+# fly.toml app configuration file generated for vite-starter on 2023-06-01T10:35:47-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-[env]
-  PORT = "8080"
+app = "vite-starter"
+primary_region = "iad"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
 
 [experimental]
   auto_rollback = true
-  
-[mounts]
+
+[env]
+  PORT = "8080"
+  PRIMARY_REGION = "iad"
+
+[[mounts]]
+  source = "dbs_machines"
   destination = "/app/dbs"
-  source = "dbs"
+  processes = ["app"]
 
 [[services]]
-  http_checks = []
+  protocol = "tcp"
   internal_port = 8080
   processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
   [services.concurrency]
+    type = "connections"
     hard_limit = 250
     soft_limit = 200
-    type = "connections"
-
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
 
   [[services.tcp_checks]]
-    grace_period = "1s"
     interval = "15s"
-    restart_limit = 0
     timeout = "2s"
+    grace_period = "1s"
+    restart_limit = 0
