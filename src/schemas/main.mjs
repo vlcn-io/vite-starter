@@ -1,3 +1,10 @@
+/**
+ * Note: modifying the schema currently requires:
+ * 1. Restarting the server
+ * 2. Refreshing the browser
+ *
+ * Other than that, DB migrations are automatically handled.
+ */
 export default {
   namespace: "default",
   name: "main",
