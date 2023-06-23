@@ -16,7 +16,7 @@ export const endpoints = {
 
 function updatePort(u: URL) {
   if (import.meta.env.DEV) {
-    u.port = "8080";
+    // u.port = "8080";
   }
   return u;
 }

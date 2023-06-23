@@ -1,4 +1,5 @@
 import express from "express";
+import ViteExpress from "vite-express";
 import {
   SyncService,
   DBCache,
@@ -7,16 +8,14 @@ import {
   DefaultConfig,
 } from "@vlcn.io/direct-connect-nodejs";
 import { JsonSerializer } from "@vlcn.io/direct-connect-common";
-import { spawn } from "child_process";
-import cors from "cors";
 import https from "https";
+import os from "os";
 import fs from "fs";
 
-const PORT = parseInt(process.env.PORT || "8080");
+// const PORT = parseInt(process.env.PORT || "8080");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
 
 const svcDb = new ServiceDB(DefaultConfig, true);
 const dbCache = new DBCache(DefaultConfig, (name, version) => {
@@ -25,12 +24,6 @@ const dbCache = new DBCache(DefaultConfig, (name, version) => {
 const fsNotify = new FSNotify(DefaultConfig, dbCache);
 const syncSvc = new SyncService(DefaultConfig, dbCache, svcDb, fsNotify);
 const serializer = new JsonSerializer();
-
-// serve the frontend in production
-if (!process.argv.includes("--dev")) {
-  app.use(express.static("public"));
-  app.use(express.static("dist"));
-}
 
 app.post(
   "/sync/changes",
@@ -86,25 +79,15 @@ app.get(
   })
 );
 
-app.listen(PORT, () =>
-  console.log(`Server listening at http://localhost:${PORT}`)
-);
-// http.createServer(app).listen(80);
-// const options = {
-//   key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
-//   cert: fs.readFileSync('test/fixtures/keys/agent2-cert.cert')
-// };
-// https.createServer(options, app).listen(443);
+const options = {
+  key: fs.readFileSync("./certs/dweb.city.key"),
+  cert: fs.readFileSync("./certs/dweb.city.pem"),
+};
+const server = https.createServer(options, app).listen(443, () => {
+  console.log(`Server listening at https://${os.hostname}.d.dweb.city`);
+});
 
-if (process.argv.includes("--dev")) {
-  const vite = spawn("./node_modules/.bin/vite", {
-    stdio: "inherit",
-  });
-  vite.on("close", (code) => {
-    console.log(`vite exited with code ${code}`);
-    process.exit(code);
-  });
-}
+ViteExpress.bind(app, server);
 
 /**
  *
