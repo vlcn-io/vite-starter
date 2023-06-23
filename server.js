@@ -9,6 +9,8 @@ import {
 import { JsonSerializer } from "@vlcn.io/direct-connect-common";
 import { spawn } from "child_process";
 import cors from "cors";
+import https from "https";
+import fs from "fs";
 
 const PORT = parseInt(process.env.PORT || "8080");
 
@@ -87,6 +89,12 @@ app.get(
 app.listen(PORT, () =>
   console.log(`Server listening at http://localhost:${PORT}`)
 );
+// http.createServer(app).listen(80);
+// const options = {
+//   key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
+//   cert: fs.readFileSync('test/fixtures/keys/agent2-cert.cert')
+// };
+// https.createServer(options, app).listen(443);
 
 if (process.argv.includes("--dev")) {
   const vite = spawn("./node_modules/.bin/vite", {
