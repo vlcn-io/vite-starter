@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
+// @ts-ignore
 import QRCode from "qrcode";
 import { CtxAsync } from "@vlcn.io/react";
 import nanoid from "./support/nanoid";

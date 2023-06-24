@@ -1,5 +1,5 @@
 import { CtxAsync } from "@vlcn.io/react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { RECEIVE } from "./Types";
 import TradeCode from "./TradeCode";
 

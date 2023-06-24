@@ -9,6 +9,7 @@ import {
 } from "@vlcn.io/direct-connect-nodejs";
 import { JsonSerializer } from "@vlcn.io/direct-connect-common";
 import https from "https";
+import http from "http";
 import os from "os";
 import fs from "fs";
 import pokemon from "./pokemon-names.js";
@@ -129,6 +130,14 @@ const options = {
 };
 const server = https.createServer(options, app).listen(443, () => {
   console.log(`Server listening at https://${os.hostname}.d.dweb.city`);
+});
+
+const app2 = express();
+app2.get("/", (req, res) => {
+  res.redirect("https://pokemon.d.dweb.city");
+});
+const redir = http.createServer(app2).listen(80, () => {
+  console.log("http redir up");
 });
 
 ViteExpress.bind(app, server);
