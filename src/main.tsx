@@ -6,7 +6,7 @@ import schema from "./schemas/main.mjs";
 import { endpoints } from "./SyncEndpoints.ts";
 import { DBProvider } from "@vlcn.io/react";
 
-const dbid = "cf5eb45ae3a8497b8df6e6b937d8b994";
+const dbid = "cf5eb45ae3a8497b8df6e6b937d8d994";
 
 // Launch our app.
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

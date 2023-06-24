@@ -1,6 +1,7 @@
 import { CtxAsync } from "@vlcn.io/react";
 import { useState } from "react";
 import nanoid from "./support/nanoid";
+import { RECEIVE } from "./Types";
 
 export default function Intro({ ctx }: { ctx: CtxAsync }) {
   const [seeding, setSeeding] = useState(false);
@@ -19,10 +20,10 @@ export default function Intro({ ctx }: { ctx: CtxAsync }) {
       }
 
       await ctx.db.exec(
-        /*sql*/ `INSERT INTO poke_log (id, seq, tradeid, owner_id, poke, direction)
+        /*sql*/ `INSERT INTO poke_log (id, seq, owner_id, poke, direction)
           VALUES
-          (?, (SELECT coalesce(seq, 0) + 1 FROM poke_log WHERE owner_id = ?), ?, ?, ?, 1)`,
-        [nanoid(), ctx.db.siteid, nanoid(), ctx.db.siteid, json.pokemon]
+          (?, (SELECT coalesce(seq, 0) + 1 FROM poke_log WHERE owner_id = ?), ?, ?, ?)`,
+        [nanoid(), ctx.db.siteid, ctx.db.siteid, json.pokemon, RECEIVE]
       );
       setSeeding(false);
       setError(null);
@@ -39,13 +40,13 @@ export default function Intro({ ctx }: { ctx: CtxAsync }) {
         <br />
         Find someone that has a Pokemon you've never seen and trade with them!
       </p>
-      <div style={{ textAlign: "left" }}>
+      {/* <div style={{ textAlign: "left" }}>
         A Poke List and Leader Board are provided to help you:
         <ol>
           <li>Find players that have Pokemon you haven't traded with yet</li>
           <li>See who is winning</li>
         </ol>
-      </div>
+      </div> */}
       <h1>
         <button onClick={seedPlayer} disabled={seeding}>
           {seeding ? "Teleporting 👽..." : "Let's Play!"}

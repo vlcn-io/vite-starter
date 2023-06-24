@@ -13,20 +13,13 @@ export default {
     CREATE TABLE IF NOT EXISTS poke_log (
       id PRIMARY KEY,
       seq INTEGER,
-      tradeid TEXT,
       "owner_id" TEXT,
       "poke" TEXT,
       "direction" INTEGER
     );
 
     CREATE INDEX IF NOT EXISTS poke_log_owner ON poke_log ("owner_id");
-    CREATE INDEX IF NOT EXISTS poke_log_trade ON poke_log ("tradeid");
     CREATE INDEX IF NOT EXISTS poke_poke ON poke_log ("poke");
-
-    CREATE TABLE IF NOT EXISTS mission (
-      "player_id" PRIMARY KEY,
-      "poke" TEXT
-    );
 
     CREATE TABLE IF NOT EXISTS player (
       "id" TEXT PRIMARY KEY,
@@ -34,7 +27,6 @@ export default {
     );
 
     SELECT crsql_as_crr('poke_log');
-    SELECT crsql_as_crr('mission');
     SELECT crsql_as_crr('player');
   `,
 };
