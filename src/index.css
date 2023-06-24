@@ -26,9 +26,24 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  /* place-items: center; */
   min-width: 320px;
+  max-width: 600px;
   min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header > a {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
 h1 {
