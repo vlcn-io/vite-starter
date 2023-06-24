@@ -11,6 +11,7 @@ import { JsonSerializer } from "@vlcn.io/direct-connect-common";
 import https from "https";
 import os from "os";
 import fs from "fs";
+import pokemon from "./pokemon-names.js";
 
 // const PORT = parseInt(process.env.PORT || "8080");
 
@@ -78,6 +79,29 @@ app.get(
     });
   })
 );
+
+app.get("/seed", (req, res) => {
+  fs.readFile(
+    "./seed-count",
+    {
+      encoding: "utf-8",
+    },
+    (err, str) => {
+      if (err) {
+        res.json({ err: "failed reading next seed" });
+        return;
+      }
+      const index = parseInt(str);
+      fs.writeFile("./seed-count", `${index + 1}`, (err) => {
+        if (err) {
+          res.json({ err: "failed writing next seed" });
+          return;
+        }
+        res.send({ pokemon: pokemon[index] });
+      });
+    }
+  );
+});
 
 app.get("/index.html", (req, res) => {
   res.redirect("/");
