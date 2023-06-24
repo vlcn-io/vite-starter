@@ -80,6 +80,8 @@ app.get(
   })
 );
 
+// TODO: an example of a case where we want to write the db from the server
+// to recording seeding information
 app.get("/seed", (req, res) => {
   fs.readFile(
     "./seed-count",

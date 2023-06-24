@@ -36,6 +36,12 @@ h1 {
   line-height: 1.1;
 }
 
+input[type="text"] {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  margin: 0.5em;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -53,6 +59,9 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+button:disabled {
+  color: grey;
 }
 
 table {

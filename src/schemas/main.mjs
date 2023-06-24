@@ -14,16 +14,16 @@ export default {
       id PRIMARY KEY,
       seq INTEGER,
       tradeid TEXT,
-      "player_id" TEXT,
+      "owner_id" TEXT,
       "poke" TEXT
     );
 
-    CREATE INDEX IF NOT EXISTS poke_log_owner ON poke_log ("owner");
+    CREATE INDEX IF NOT EXISTS poke_log_owner ON poke_log ("owner_id");
     CREATE INDEX IF NOT EXISTS poke_log_trade ON poke_log ("tradeid");
     CREATE INDEX IF NOT EXISTS poke_poke ON poke_log ("poke");
 
     CREATE TABLE IF NOT EXISTS mission (
-      "owner" PRIMARY KEY,
+      "player_id" PRIMARY KEY,
       "poke" TEXT
     );
 
@@ -70,4 +70,13 @@ export default {
  *
  * So "server mirrored tables" fo sho. Maybe with optimistsic client caching.
  * Maybe even columns like this?
+ *
+ *
+ * Perm rules can impl server authoritative too
+ *
+ * REST endpoint to issue a sever write rather than issue on client then sync (for server authoritative stuff)
+ *
+ * All the flickers.. fml.
+ * Vanilla fetch style where we pre-fetch the graph. Doable with
+ * Drizzle relation queries.
  */
