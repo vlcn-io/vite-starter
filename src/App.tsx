@@ -14,7 +14,7 @@ function App({ dbid }: { dbid: string }) {
   ).data;
   const myCurrentPokeman = useQuery<{ poke: string }, string | undefined>(
     ctx,
-    /*sql*/ `SELECT "poke" FROM "poke_log" WHERE "owner_id" = ? ORDER BY "seq" DESC LIMIT 1`,
+    /*sql*/ `SELECT "poke" FROM "poke_log" WHERE "owner_id" = ? AND "direction" = 1 ORDER BY "seq" DESC LIMIT 1`,
     [ctx.db.siteid],
     firstPick
   ).data;

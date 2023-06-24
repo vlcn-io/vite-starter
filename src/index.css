@@ -87,6 +87,10 @@ table input {
   font-size: 1em;
 }
 
+table td {
+  border: 1px solid white;
+}
+
 table input:focus {
   background: grey;
 }

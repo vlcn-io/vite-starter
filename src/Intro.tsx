@@ -19,9 +19,9 @@ export default function Intro({ ctx }: { ctx: CtxAsync }) {
       }
 
       await ctx.db.exec(
-        /*sql*/ `INSERT INTO poke_log (id, seq, tradeid, owner_id, poke)
+        /*sql*/ `INSERT INTO poke_log (id, seq, tradeid, owner_id, poke, direction)
           VALUES
-          (?, (SELECT coalesce(seq, 0) + 1 FROM poke_log WHERE owner_id = ?), ?, ?, ?)`,
+          (?, (SELECT coalesce(seq, 0) + 1 FROM poke_log WHERE owner_id = ?), ?, ?, ?, 1)`,
         [nanoid(), ctx.db.siteid, nanoid(), ctx.db.siteid, json.pokemon]
       );
       setSeeding(false);

@@ -23,7 +23,7 @@ export default function Register({ ctx }: { ctx: CtxAsync }) {
       <p>Please pick a human friendly name!</p>
       <input
         type="text"
-        placeholder="Anonymous Coward"
+        placeholder="Anonymous 🫠"
         value={name}
         onChange={(e) => setName(e.target.value)}
       ></input>

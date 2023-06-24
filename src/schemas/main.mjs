@@ -15,7 +15,8 @@ export default {
       seq INTEGER,
       tradeid TEXT,
       "owner_id" TEXT,
-      "poke" TEXT
+      "poke" TEXT,
+      "direction" INTEGER
     );
 
     CREATE INDEX IF NOT EXISTS poke_log_owner ON poke_log ("owner_id");

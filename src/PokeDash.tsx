@@ -3,14 +3,9 @@ import PokeCard from "./PokeCard";
 import Rank from "./Rank";
 import UniqueTrades from "./UniqueTrades";
 
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  useNavigate,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Leaderboard from "./Leaderboard";
+import Trades from "./Trades";
 
 export default function PokeDash({
   ctx,
@@ -26,7 +21,8 @@ export default function PokeDash({
           path="/"
           element={<Root ctx={ctx} currentPokemon={currentPokemon} />}
         />
-        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/leaderboard" element={<Leaderboard ctx={ctx} />} />
+        <Route path="/trades" element={<Trades ctx={ctx} />} />
       </Routes>
     </BrowserRouter>
   );

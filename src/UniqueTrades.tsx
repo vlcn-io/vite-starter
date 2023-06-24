@@ -1,4 +1,5 @@
 import { CtxAsync, firstPick, useQuery } from "@vlcn.io/react";
+import { Link } from "react-router-dom";
 
 export default function UniqueTrades({ ctx }: { ctx: CtxAsync }) {
   const uniqueTradesMade = useQuery<{ count: number }, number | undefined>(
@@ -8,6 +9,8 @@ export default function UniqueTrades({ ctx }: { ctx: CtxAsync }) {
     firstPick
   ).data;
   return (
-    <button style={{ flexGrow: 1 }}>Score: {uniqueTradesMade || 0}</button>
+    <Link to="/trades" style={{ flexGrow: 1 }}>
+      Score: {uniqueTradesMade || 0}
+    </Link>
   );
 }
