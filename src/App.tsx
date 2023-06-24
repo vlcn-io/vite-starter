@@ -2,6 +2,7 @@ import "./App.css";
 import { firstPick, useDB, useQuery } from "@vlcn.io/react";
 import Register from "./Register";
 import Intro from "./Intro";
+import PokeDash from "./PokeDash";
 
 function App({ dbid }: { dbid: string }) {
   const ctx = useDB(dbid);
@@ -11,7 +12,7 @@ function App({ dbid }: { dbid: string }) {
     [ctx.db.siteid],
     firstPick
   ).data;
-  const myCurrentPokeman = useQuery(
+  const myCurrentPokeman = useQuery<{ poke: string }, string | undefined>(
     ctx,
     /*sql*/ `SELECT "poke" FROM "poke_log" WHERE "owner_id" = ? ORDER BY "seq" DESC LIMIT 1`,
     [ctx.db.siteid],
@@ -23,10 +24,7 @@ function App({ dbid }: { dbid: string }) {
   if (myCurrentPokeman == null) {
     return <Intro ctx={ctx} />;
   }
-  // get their site id
-  // see if we have a reigstered name for them
-  // if not, ask them to register and seed them
-  return <div>Welcome to Poke-Pass!</div>;
+  return <PokeDash ctx={ctx} currentPokemon={myCurrentPokeman} />;
 }
 
 export default App;

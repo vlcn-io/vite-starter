@@ -105,6 +105,20 @@ app.get("/seed", (req, res) => {
   );
 });
 
+app.post("/exchange", (req, res) => {
+  // exchange is:
+  // [player_id1, poke]
+  // [player_id2, poke]
+  // makes a trade id and swaps them in the log
+  // or we can do webrtc where the qr code creator creates the tradeid
+  // and both devices write under that tradeid
+  // hmmm.. no b/c not unique on tradeid.
+  // qr code generator would create both pks for the two log entries
+  // or each devices writes the singular entry it is responsible for?
+  // cross device transaction??
+  // easiest in server to write the swap?
+});
+
 app.get("/index.html", (req, res) => {
   res.redirect("/");
 });
