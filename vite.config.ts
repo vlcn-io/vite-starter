@@ -33,5 +33,9 @@ export default defineConfig({
     fs: {
       strict: false,
     },
+    https: {
+      cert: "./certs/dweb.city.pem",
+      key: "./certs/dweb.city.key",
+    },
   },
 });

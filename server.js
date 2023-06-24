@@ -79,6 +79,10 @@ app.get(
   })
 );
 
+app.get("/index.html", (req, res) => {
+  res.redirect("/");
+});
+
 const options = {
   key: fs.readFileSync("./certs/dweb.city.key"),
   cert: fs.readFileSync("./certs/dweb.city.pem"),
