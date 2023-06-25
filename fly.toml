@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for vite-starter on 2023-06-01T10:35:47-04:00
+# fly.toml app configuration file generated for vite-tinybase-ts-react-crsqlite on 2023-06-26T11:02:02-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "vite-starter"
+app = "vite-tinybase-ts-react-crsqlite"
 primary_region = "iad"
 kill_signal = "SIGINT"
 kill_timeout = "5s"
