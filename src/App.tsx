@@ -1,21 +1,42 @@
 import "./App.css";
 import { useCallback } from "react";
-import { useCachedState, useDB, useQuery } from "@vlcn.io/react";
-import { DBAsync } from "@vlcn.io/xplat-api";
+import { createStore } from "tinybase";
+import { createCrSqliteWasmPersister } from "tinybase/persisters/persister-cr-sqlite-wasm";
+import {
+  CellProps,
+  RowProps,
+  SortedTableView,
+  useCell,
+  useCreatePersister,
+  useCreateStore,
+} from "tinybase/ui-react";
+import { DB } from "@vlcn.io/crsqlite-wasm";
+import { useDB } from "@vlcn.io/react";
 import reactLogo from "./assets/react.svg";
 import tinybaseLogo from "./assets/tinybase.svg";
 import vlcnLogo from "./assets/vlcn.png";
 import randomWords from "./support/randomWords.js";
 
-type TestRecord = { id: string; name: string };
 const wordOptions = { exactly: 3, join: " " };
 
 function App({ dbid }: { dbid: string }) {
   const ctx = useDB(dbid);
-  const data = useQuery<TestRecord>(
-    ctx,
-    "SELECT * FROM test ORDER BY id DESC"
-  ).data;
+
+  const store = useCreateStore(createStore);
+  useCreatePersister(
+    store,
+    (store) =>
+      createCrSqliteWasmPersister(store, ctx.db as DB, {
+        mode: "tabular",
+        tables: {
+          load: { test: { tableId: "test", rowIdColumnName: "id" } },
+        },
+      }),
+    [ctx.db],
+    async (persister) => {
+      await persister.startAutoLoad();
+    }
+  );
 
   const addData = useCallback(() => {
     ctx.db.exec("INSERT INTO test (id, name) VALUES (?, ?);", [
@@ -55,14 +76,12 @@ function App({ dbid }: { dbid: string }) {
             </tr>
           </thead>
           <tbody>
-            {data.map((row) => (
-              <tr key={row.id}>
-                <td>{row.id}</td>
-                <td>
-                  <EditableItem db={ctx.db} id={row.id} value={row.name} />
-                </td>
-              </tr>
-            ))}
+            <SortedTableView
+              store={store}
+              tableId="test"
+              descending={true}
+              rowComponent={DataRow}
+            />
           </tbody>
         </table>
         <p>
@@ -76,40 +95,29 @@ function App({ dbid }: { dbid: string }) {
           to test sync.
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite, React and Vulcan logos to learn more
-      </p>
+      <p className="read-the-docs">Click on the logos to learn more</p>
     </>
   );
 }
 
-function EditableItem({
-  db,
-  id,
-  value,
-}: {
-  db: DBAsync;
-  id: string;
-  value: string;
-}) {
-  // Generally you will not need to use `useCachedState`. It is only required for highly interactive components
-  // that write to the database on every interaction (e.g., keystroke or drag) or in cases where you want
-  // to de-bounce your writes to the DB.
-  //
-  // `useCachedState` will never be required once when one of the following is true:
-  // a. We complete the synchronous Reactive SQL layer (SQLiteRX)
-  // b. We figure out how to get SQLite-WASM to do a write + read round-trip in a single event loop tick
-  const [cachedValue, setCachedValue] = useCachedState(value);
-  const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCachedValue(e.target.value);
-    // You could de-bounce your write to the DB here if so desired.
-    return db.exec("UPDATE test SET name = ? WHERE id = ?;", [
-      e.target.value,
-      id,
-    ]);
-  };
+function DataRow({ store, tableId, rowId }: RowProps) {
+  return (
+    <tr key={rowId}>
+      <td>{rowId}</td>
+      <td>
+        <NonEditableItem
+          store={store}
+          tableId={tableId}
+          rowId={rowId}
+          cellId="name"
+        />
+      </td>
+    </tr>
+  );
+}
 
-  return <input type="text" value={cachedValue} onChange={onChange} />;
+function NonEditableItem({ store, tableId, rowId, cellId }: CellProps) {
+  return useCell(tableId, rowId, cellId, store);
 }
 
 export default App;
