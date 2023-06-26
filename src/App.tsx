@@ -1,7 +1,7 @@
 import "./App.css";
 import { useCallback } from "react";
-import { createStore } from "tinybase";
-import { createCrSqliteWasmPersister } from "tinybase/persisters/persister-cr-sqlite-wasm";
+import { createStore } from "tinybase/debug";
+import { createCrSqliteWasmPersister } from "tinybase/debug/persisters/persister-cr-sqlite-wasm";
 import {
   CellProps,
   RowProps,
@@ -9,7 +9,9 @@ import {
   useCell,
   useCreatePersister,
   useCreateStore,
-} from "tinybase/ui-react";
+  useDelTableCallback,
+  useSetCellCallback,
+} from "tinybase/debug/ui-react";
 import { DB } from "@vlcn.io/crsqlite-wasm";
 import { useDB } from "@vlcn.io/react";
 import reactLogo from "./assets/react.svg";
@@ -30,24 +32,28 @@ function App({ dbid }: { dbid: string }) {
         mode: "tabular",
         tables: {
           load: { test: { tableId: "test", rowIdColumnName: "id" } },
+          save: { test: { tableName: "test", rowIdColumnName: "id" } },
         },
       }),
     [ctx.db],
     async (persister) => {
       await persister.startAutoLoad();
+      await persister.startAutoSave();
     }
   );
 
-  const addData = useCallback(() => {
-    ctx.db.exec("INSERT INTO test (id, name) VALUES (?, ?);", [
-      nanoid(10),
-      randomWords(wordOptions) as string,
-    ]);
-  }, [ctx.db]);
+  const addData = useCallback(
+    () =>
+      store.setCell(
+        "test",
+        nanoid(10),
+        "name",
+        randomWords(wordOptions) as string
+      ),
+    [store]
+  );
 
-  const dropData = useCallback(() => {
-    ctx.db.exec("DELETE FROM test;");
-  }, [ctx.db]);
+  const dropData = useDelTableCallback("test", store);
 
   return (
     <>
@@ -105,7 +111,7 @@ function DataRow({ store, tableId, rowId }: RowProps) {
     <tr key={rowId}>
       <td>{rowId}</td>
       <td>
-        <NonEditableItem
+        <EditableItem
           store={store}
           tableId={tableId}
           rowId={rowId}
@@ -116,8 +122,22 @@ function DataRow({ store, tableId, rowId }: RowProps) {
   );
 }
 
-function NonEditableItem({ store, tableId, rowId, cellId }: CellProps) {
-  return useCell(tableId, rowId, cellId, store);
+function EditableItem({ store, tableId, rowId, cellId }: CellProps) {
+  const handleChange = useSetCellCallback(
+    tableId,
+    rowId,
+    cellId,
+    (event: React.FormEvent<HTMLInputElement>) => event.currentTarget.value,
+    [],
+    store
+  );
+  return (
+    <input
+      type="text"
+      value={"" + useCell(tableId, rowId, cellId, store)}
+      onChange={handleChange}
+    />
+  );
 }
 
 export default App;
