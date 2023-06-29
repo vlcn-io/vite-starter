@@ -34,12 +34,8 @@ export default function Intro({ ctx }: { ctx: CtxAsync }) {
   }
   return (
     <div style={{ maxWidth: 600 }}>
-      <h1>Poke Pass!</h1>
-      <p style={{ textAlign: "left" }}>
-        The goal of Poke Pass is to trade as many unique Pokemon as possible.
-        <br />
-        Find someone that has a Pokemon you've never seen and trade with them!
-      </p>
+      <h1>Poke Mate!</h1>
+      <p style={{ textAlign: "left" }}>Mate as many pokemon as possible!</p>
       {/* <div style={{ textAlign: "left" }}>
         A Poke List and Leader Board are provided to help you:
         <ol>

@@ -100,7 +100,7 @@ app.get("/seed", (req, res) => {
           res.json({ err: "failed writing next seed" });
           return;
         }
-        res.send({ pokemon: pokemon[index] });
+        res.send({ pokemon: pokemon[index % pokemon.length] });
       });
     }
   );

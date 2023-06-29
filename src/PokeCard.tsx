@@ -2,6 +2,7 @@ import { CtxAsync } from "@vlcn.io/react";
 import { CurrentPokeman, SEND } from "./Types";
 import nanoid from "./support/nanoid";
 import TradeCode from "./TradeCode";
+import { useState } from "react";
 
 export default function PokeCard({
   ctx,
@@ -10,8 +11,10 @@ export default function PokeCard({
   ctx: CtxAsync;
   currentPokeman: CurrentPokeman;
 }) {
+  const [override, setOverride] = useState(false);
   function maybeInitiateTrade() {
     if (currentPokeman.direction === SEND) {
+      setOverride((o) => !o);
       // already sending
       return;
     }
@@ -25,18 +28,21 @@ export default function PokeCard({
     );
   }
 
-  if (currentPokeman.direction === SEND) {
+  if (currentPokeman.direction === SEND && !override) {
     return (
-      <div>
-        <TradeCode ctx={ctx} poke={currentPokeman.poke} />
+      <div
+        onClick={() => {
+          setOverride((o) => !o);
+        }}
+      >
+        <TradeCode poke={currentPokeman.poke} />
         <h2>
           Your{" "}
           <span style={{ textTransform: "capitalize", color: "red" }}>
             {currentPokeman.poke}
           </span>{" "}
-          is being sent!
-          <br /> Complete the trade with another player before your Pokemon gets{" "}
-          <span style={{ color: "green" }}>lost!</span> 👻
+          is ready!
+          <br /> Have any other person at dweb scan this QR code to mate!
         </h2>
       </div>
     );
@@ -51,7 +57,9 @@ export default function PokeCard({
       <h1 style={{ textTransform: "capitalize", marginTop: 0 }}>
         {currentPokeman.poke}
       </h1>
-      <p>(tap Pokemon to trade)</p>
+      <p>
+        <strong>(tap the Pokemon to mate!!!)</strong>
+      </p>
     </div>
   );
 }
