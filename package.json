@@ -1,5 +1,5 @@
 {
-  "name": "vlcn-vite-starter",
+  "name": "vite-tinybase-ts-react-crsqlite",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -20,19 +20,20 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tinybase": "^4.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
-    "@vitejs/plugin-react": "^4.0.0",
-    "eslint": "^8.38.0",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "@vitejs/plugin-react": "^4.0.1",
+    "eslint": "^8.44.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.3.4",
-    "typescript": "^5.0.2",
-    "vite": "^4.3.2",
+    "eslint-plugin-react-refresh": "^0.4.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9",
     "vite-plugin-pwa": "^0.16.4"
   }
 }
