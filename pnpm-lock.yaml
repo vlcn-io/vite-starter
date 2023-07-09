@@ -15,8 +15,8 @@ dependencies:
     specifier: 0.5.0-next.1
     version: 0.5.0-next.1
   '@vlcn.io/direct-connect-nodejs':
-    specifier: 0.5.0-next.1
-    version: 0.5.0-next.1
+    specifier: 0.5.0-next.3
+    version: 0.5.0-next.3
   '@vlcn.io/react':
     specifier: 2.4.0-next.1
     version: 2.4.0-next.1(react@18.2.0)
@@ -2089,8 +2089,8 @@ packages:
       lib0: 0.2.78
     dev: false
 
-  /@vlcn.io/direct-connect-nodejs@0.5.0-next.1:
-    resolution: {integrity: sha512-l5+iRxNpxQhRB4wkQHvqa+6JB8tq2zz+HLCG066fP9JTEQuDSMDgKW98gdfekZJgYPYHJaISsvA0LrNKtWCo6A==}
+  /@vlcn.io/direct-connect-nodejs@0.5.0-next.3:
+    resolution: {integrity: sha512-hFjbrzd4tzvIPS8YKjUftl9RSL1xc7iaT/2s+x/iIZWJisB7M7Wg6Nl9j5VAF4fKwurvdgAiAu5dECSxEj7miw==}
     dependencies:
       '@vlcn.io/crsqlite': 0.14.0-next.0
       '@vlcn.io/direct-connect-common': 0.5.0-next.1
