@@ -1,9 +1,17 @@
 # vite-starter
 
+Getting started with pnpm/npm/yarn create:
+
+```
+npm create @vlcn.io@latest your-app-name
+```
+
+Or, just cloning directly:
+
 ```
 git clone git@github.com:vlcn-io/vite-starter.git
-pnpm install
-pnpm dev
+npm install
+npm dev
 ```
 
 What you get:
