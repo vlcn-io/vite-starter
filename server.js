@@ -7,8 +7,11 @@ import {
   DefaultConfig,
 } from "@vlcn.io/direct-connect-nodejs";
 import { JsonSerializer } from "@vlcn.io/direct-connect-common";
-import { spawn } from "child_process";
-import cors from "cors";
+import { spawn } from "node:child_process";
+import cors from "node:cors";
+import path from "node:path";
+import os from "node:os";
+import process from "node:process";
 
 const PORT = parseInt(process.env.PORT || "8080");
 
@@ -89,8 +92,13 @@ app.listen(PORT, () =>
 );
 
 if (process.argv.includes("--dev")) {
-  const vite = spawn("./node_modules/.bin/vite", {
+  let cmd = "vite";
+  if (isWindows()) {
+    cmd = "vite.CMD";
+  }
+  const vite = spawn(path.join(".", "node_modules", ".bin", cmd), {
     stdio: "inherit",
+    shell: true,
   });
   vite.on("close", (code) => {
     console.log(`vite exited with code ${code}`);
@@ -112,4 +120,8 @@ function makeSafe(handler) {
       res.status(500).json({ error: err.message });
     }
   };
+}
+
+function isWindows() {
+  return os.platform() === "win32";
 }
