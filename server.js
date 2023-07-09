@@ -8,7 +8,7 @@ import {
 } from "@vlcn.io/direct-connect-nodejs";
 import { JsonSerializer } from "@vlcn.io/direct-connect-common";
 import { spawn } from "node:child_process";
-import cors from "node:cors";
+import cors from "cors";
 import path from "node:path";
 import os from "node:os";
 import process from "node:process";
