@@ -1,17 +1,23 @@
-import { useCachedState, useQuery } from "@vlcn.io/react";
+import { CtxAsync, useCachedState, useQuery, useSync } from "@vlcn.io/react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import vlcnLogo from "./assets/vlcn.png";
 import "./App.css";
 import randomWords from "./support/randomWords.js";
-import { DBAsync } from "@vlcn.io/xplat-api";
 import { useDB } from "@vlcn.io/react";
+import workerUrl from "./worker.js?url";
 
 type TestRecord = { id: string; name: string };
 const wordOptions = { exactly: 3, join: " " };
 
-function App({ dbid }: { dbid: string }) {
-  const ctx = useDB(dbid);
+function App({ dbname }: { dbname: string }) {
+  const ctx = useDB(dbname);
+  useSync({
+    dbname,
+    endpoint: "ws://localhost:8080/sync",
+    room: dbname,
+    workerUrl,
+  });
   const data = useQuery<TestRecord>(
     ctx,
     "SELECT * FROM test ORDER BY id DESC"
@@ -59,7 +65,7 @@ function App({ dbid }: { dbid: string }) {
               <tr key={row.id}>
                 <td>{row.id}</td>
                 <td>
-                  <EditableItem db={ctx.db} id={row.id} value={row.name} />
+                  <EditableItem ctx={ctx} id={row.id} value={row.name} />
                 </td>
               </tr>
             ))}
@@ -84,11 +90,11 @@ function App({ dbid }: { dbid: string }) {
 }
 
 function EditableItem({
-  db,
+  ctx,
   id,
   value,
 }: {
-  db: DBAsync;
+  ctx: CtxAsync;
   id: string;
   value: string;
 }) {
@@ -103,7 +109,7 @@ function EditableItem({
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setCachedValue(e.target.value);
     // You could de-bounce your write to the DB here if so desired.
-    return db.exec("UPDATE test SET name = ? WHERE id = ?;", [
+    return ctx.db.exec("UPDATE test SET name = ? WHERE id = ?;", [
       e.target.value,
       id,
     ]);

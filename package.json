@@ -4,23 +4,24 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node ./slurp.mjs && node ./server.js --dev",
-    "start": "node ./slurp.mjs && node ./server.js",
+    "dev": "node ./server.js",
+    "start": "NODE_ENV=production node ./server.js",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "@vlcn.io/crsqlite-wasm": "0.14.0",
-    "@vlcn.io/direct-connect-browser": "0.4.0",
-    "@vlcn.io/direct-connect-common": "0.5.0",
-    "@vlcn.io/direct-connect-nodejs": "0.5.0",
-    "@vlcn.io/react": "2.4.0",
-    "@vlcn.io/rx-tbl": "0.13.0",
-    "@vlcn.io/xplat-api": "0.13.0",
+    "@vlcn.io/crsqlite-wasm": "link:../vulcan/js/packages/crsqlite-wasm",
+    "@vlcn.io/react": "link:../vulcan/js/packages/react",
+    "@vlcn.io/rx-tbl": "link:../vulcan/js/packages/rx-tbl",
+    "@vlcn.io/ws-browserdb": "link:../vulcan/js/packages/ws-browserdb",
+    "@vlcn.io/ws-client": "link:../vulcan/js/packages/ws-client",
+    "@vlcn.io/ws-server": "link:../vulcan/js/packages/ws-server",
+    "@vlcn.io/xplat-api": "link:../vulcan/js/packages/xplat-api",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vite-express": "^0.9.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
