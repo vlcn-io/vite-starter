@@ -16,9 +16,10 @@ kill_timeout = "5s"
   PRIMARY_REGION = "iad"
 
 [[mounts]]
-  source = "dbs_machines"
-  destination = "/app/dbs"
-  processes = ["app"]
+  destination = "/var/lib/litefs"
+  encrypted = false
+  processes = []
+  source = "litefs"
 
 [[services]]
   protocol = "tcp"
