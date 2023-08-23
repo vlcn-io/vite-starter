@@ -5,7 +5,7 @@ import vlcnLogo from "./assets/vlcn.png";
 import "./App.css";
 import randomWords from "./support/randomWords.js";
 import { useDB } from "@vlcn.io/react";
-import workerUrl from "./worker.js?url";
+import workerUrl from "./sync-worker.js?url";
 
 type TestRecord = { id: string; name: string };
 const wordOptions = { exactly: 3, join: " " };
