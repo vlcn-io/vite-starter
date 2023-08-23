@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@vlcn.io/crsqlite-wasm':
     specifier: 0.15.0-next.4
@@ -548,6 +544,7 @@ packages:
   /@babel/plugin-proposal-unicode-property-regex@7.18.6(@babel/core@7.21.8):
     resolution: {integrity: sha512-2BShG/d5yoZyXZfVePH91urL5wTG6ASZU9M4o03lKK8u8UW1y08OMttBSOADTcJrnPMpvDXRG3G8fyLh4ovs8w==}
     engines: {node: '>=4'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-unicode-property-regex instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -2122,7 +2119,7 @@ packages:
   /@vlcn.io/ws-common@0.1.0-next.2:
     resolution: {integrity: sha512-HWNUkAMzsVdVPEGM5yiXwc1TivHMfWBT8TU3Lye77S3EBn0hYeYs6/GPZvNx9N+2vssYSqRfv3RrvABvzIJn2A==}
     dependencies:
-      lib0: 0.2.82
+      lib0: 0.2.83
     dev: false
 
   /@vlcn.io/ws-server@0.1.0-next.14:
@@ -2130,7 +2127,7 @@ packages:
     dependencies:
       '@vlcn.io/crsqlite': 0.15.0-next.1
       '@vlcn.io/ws-common': 0.1.0-next.2
-      better-sqlite3: 8.5.1
+      better-sqlite3: 8.6.0
       throttle-debounce: 5.0.0
       winston: 3.10.0
       ws: 8.13.0
@@ -2287,8 +2284,8 @@ packages:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: false
 
-  /better-sqlite3@8.5.1:
-    resolution: {integrity: sha512-aDfC67xfll6bugnOqRJhdUWioQZnkhLkrwZ+oo6yZbNMtyktbwkDO4SfBcCVWbm4BlsCjCNTJchlHaBt+vB4Iw==}
+  /better-sqlite3@8.6.0:
+    resolution: {integrity: sha512-jwAudeiTMTSyby+/SfbHDebShbmC2MCH8mU2+DXi0WJfv13ypEJm47cd3kljmy/H130CazEvkf2Li//ewcMJ1g==}
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
@@ -3538,8 +3535,8 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /lib0@0.2.82:
-    resolution: {integrity: sha512-sZJeggxq56weXHnBc37dXNnYKGPvdR75zKxGHNc8gLE+ldKCbc4whk0JY2cV17lxuBFtvRd4dIsSh6Cfz7slUw==}
+  /lib0@0.2.83:
+    resolution: {integrity: sha512-O72x2MGVOG3TwQ1aXXkk1Ebb438OrxyQcg60oiWRm66U9uCnE12fDfO+NlQ43OVQkgNLvw2hzHYxkp76YLSxRw==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
@@ -4884,3 +4881,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

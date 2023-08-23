@@ -15,7 +15,11 @@ attachWebsocketServer(server, {
 });
 
 server.listen(PORT, () =>
+<<<<<<< HEAD
   console.log("info", `listening on http://localhost:${PORT}!`)
+=======
+  console.log("info", `listening on https://localhost:${PORT}!`)
+>>>>>>> f092e00 (websocket sync, new react hooks, use react strict mode)
 );
 
 ViteExpress.bind(app, server);
