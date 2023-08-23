@@ -24,7 +24,7 @@ import React from "react";
  * and server.
  */
 function getRoom(hash: HashBag): string {
-  return hash.dbid || localStorage.getItem("room") || newRoom();
+  return hash.room || localStorage.getItem("room") || newRoom();
 }
 
 const hash = parseHash();
