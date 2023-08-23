@@ -2,10 +2,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-import { newDbid } from "@vlcn.io/direct-connect-browser";
-import schema from "./schemas/main.mjs";
-import { endpoints } from "./SyncEndpoints.ts";
+import schemaContent from "./schemas/main.sql?raw";
 import { DBProvider } from "@vlcn.io/react";
+import React from "react";
 
 /**
  * Returns the ID of a remote database to sync with or creates a new one
@@ -24,23 +23,31 @@ import { DBProvider } from "@vlcn.io/react";
  * Randomly generating a DBID will cause new databases to be created on both the client
  * and server.
  */
-function getRemoteDbid(hash: HashBag): string {
-  return hash.dbid || localStorage.getItem("remoteDbid") || newDbid();
+function getRoom(hash: HashBag): string {
+  return hash.dbid || localStorage.getItem("room") || newRoom();
 }
 
 const hash = parseHash();
-const dbid = getRemoteDbid(hash);
-if (dbid != hash.dbid) {
-  hash.dbid = dbid;
+const room = getRoom(hash);
+if (room != hash.room) {
+  hash.room = room;
   window.location.hash = writeHash(hash);
 }
-localStorage.setItem("remoteDbid", dbid);
+localStorage.setItem("room", room);
 
 // Launch our app.
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <DBProvider dbid={dbid} schema={schema} endpoints={endpoints}>
-    <App dbid={dbid} />
-  </DBProvider>
+  <React.StrictMode>
+    <DBProvider
+      dbname={room}
+      schema={{
+        name: "main.sql",
+        content: schemaContent,
+      }}
+    >
+      <App dbname={room} />
+    </DBProvider>
+  </React.StrictMode>
 );
 
 type HashBag = { [key: string]: string };
@@ -65,4 +72,8 @@ function writeHash(hash: HashBag) {
     parts.push(`${key}=${hash[key]}`);
   }
   return parts.join(",");
+}
+
+function newRoom() {
+  return crypto.randomUUID().replaceAll("-", "");
 }

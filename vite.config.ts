@@ -8,7 +8,7 @@ export default defineConfig({
     target: "esnext",
   },
   optimizeDeps: {
-    exclude: ["@vite/client", "@vite/env"],
+    exclude: ["@vite/client", "@vite/env", "@vlcn.io/crsqlite-wasm"],
     esbuildOptions: {
       target: "esnext",
     },
@@ -28,9 +28,9 @@ export default defineConfig({
       },
     }),
   ],
-  server: {
-    fs: {
-      strict: false,
-    },
-  },
+  // server: {
+  //   fs: {
+  //     strict: false,
+  //   },
+  // },
 });
