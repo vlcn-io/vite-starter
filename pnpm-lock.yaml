@@ -16,6 +16,9 @@ dependencies:
   '@vlcn.io/ws-client':
     specifier: link:../js/packages/ws-client
     version: link:../js/packages/ws-client
+  '@vlcn.io/ws-litefs':
+    specifier: link:../js/packages/ws-litefs
+    version: link:../js/packages/ws-litefs
   '@vlcn.io/ws-server':
     specifier: link:../js/packages/ws-server
     version: link:../js/packages/ws-server

@@ -28,9 +28,9 @@ export default defineConfig({
     //   },
     // }),
   ],
-  // server: {
-  //   fs: {
-  //     strict: false,
-  //   },
-  // },
+  server: {
+    fs: {
+      strict: false,
+    },
+  },
 });

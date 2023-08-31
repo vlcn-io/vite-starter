@@ -16,6 +16,7 @@
     "@vlcn.io/ws-browserdb": "link:../js/packages/ws-browserdb",
     "@vlcn.io/ws-client": "link:../js/packages/ws-client",
     "@vlcn.io/ws-server": "link:../js/packages/ws-server",
+    "@vlcn.io/ws-litefs": "link:../js/packages/ws-litefs",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "react": "^18.2.0",
