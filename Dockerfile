@@ -26,7 +26,7 @@ COPY --from=builder /usr/local/node /usr/local/node
 COPY --from=builder /app /app
 
 RUN apt-get update; apt install -y fuse3 ca-certificates curl
-COPY --from=flyio/litefs:0.4 /usr/local/bin/litefs /usr/local/bin/litefs
+COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
 ADD etc/litefs.yml /etc/litefs.yml
 
 WORKDIR /app
