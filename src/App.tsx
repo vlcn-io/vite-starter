@@ -10,12 +10,22 @@ import SyncWorker from "./sync-worker.js?worker";
 type TestRecord = { id: string; name: string };
 const wordOptions = { exactly: 3, join: " " };
 
+function getEndpoint() {
+  let proto = "ws:";
+  const host = window.location.host;
+  if (window.location.protocol === "https:") {
+    proto = "wss:";
+  }
+
+  return `${proto}//${host}/sync`;
+}
+
 const worker = new SyncWorker();
 function App({ dbname }: { dbname: string }) {
   const ctx = useDB(dbname);
   useSync({
     dbname,
-    endpoint: "ws://localhost:8080/sync",
+    endpoint: getEndpoint(),
     room: dbname,
     worker,
   });
