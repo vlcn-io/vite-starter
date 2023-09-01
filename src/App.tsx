@@ -10,13 +10,14 @@ import SyncWorker from "./sync-worker.js?worker";
 type TestRecord = { id: string; name: string };
 const wordOptions = { exactly: 3, join: " " };
 
+const worker = new SyncWorker();
 function App({ dbname }: { dbname: string }) {
   const ctx = useDB(dbname);
   useSync({
     dbname,
     endpoint: "ws://localhost:8080/sync",
     room: dbname,
-    worker: new SyncWorker(),
+    worker,
   });
   const data = useQuery<TestRecord>(
     ctx,
