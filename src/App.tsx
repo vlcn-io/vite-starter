@@ -5,7 +5,7 @@ import vlcnLogo from "./assets/vlcn.png";
 import "./App.css";
 import randomWords from "./support/randomWords.js";
 import { useDB } from "@vlcn.io/react";
-import workerUrl from "./sync-worker.js?url";
+import SyncWorker from "./sync-worker.js?worker";
 
 type TestRecord = { id: string; name: string };
 const wordOptions = { exactly: 3, join: " " };
@@ -16,7 +16,7 @@ function App({ dbname }: { dbname: string }) {
     dbname,
     endpoint: "ws://localhost:8080/sync",
     room: dbname,
-    workerUrl,
+    worker: new SyncWorker(),
   });
   const data = useQuery<TestRecord>(
     ctx,
