@@ -12,19 +12,14 @@ const PORT = parseInt(process.env.PORT || "8080");
 const app = express();
 const server = http.createServer(app);
 
-const litefsConfig = {
-  port: 9000,
-  primaryFileDir: "/var/lib/litefs",
-  primaryFile: ".primary",
-};
 const wsConfig = {
   dbFolder: "./dbs",
   schemaFolder: "./src/schemas",
   pathPattern: /\/sync/,
 };
-const dbFactory = await createLiteFSDBFactory(litefsConfig);
+const dbFactory = await createLiteFSDBFactory(9000, wsConfig);
 const dbCache = attachWebsocketServer(server, wsConfig, dbFactory);
-createLiteFSWriteService(litefsConfig, wsConfig, dbCache);
+createLiteFSWriteService(9000, wsConfig, dbCache);
 
 server.listen(PORT, () =>
   console.log("info", `listening on http://localhost:${PORT}!`)
