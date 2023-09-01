@@ -16,6 +16,7 @@ const wsConfig = {
   dbFolder: "./dbs",
   schemaFolder: "./src/schemas",
   pathPattern: /\/sync/,
+  appName: "vite-litefs-starter",
 };
 const dbFactory = await createLiteFSDBFactory(9000, wsConfig);
 const dbCache = attachWebsocketServer(server, wsConfig, dbFactory);
