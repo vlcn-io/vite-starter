@@ -17,11 +17,11 @@ dependencies:
     specifier: 0.1.0-next.17
     version: 0.1.0-next.17
   '@vlcn.io/ws-litefs':
-    specifier: 0.1.0-next.4
-    version: 0.1.0-next.4
+    specifier: 0.1.0-next.5
+    version: 0.1.0-next.5
   '@vlcn.io/ws-server':
-    specifier: 0.1.0-next.16
-    version: 0.1.0-next.16
+    specifier: 0.1.0-next.17
+    version: 0.1.0-next.17
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -2125,12 +2125,12 @@ packages:
       lib0: 0.2.83
     dev: false
 
-  /@vlcn.io/ws-litefs@0.1.0-next.4:
-    resolution: {integrity: sha512-QLRepKJTpPNwQkkeI5PSLsPUFvZbeESTij/2l8HhpvyqyW85CBHsxwTzAe664vDHAE54+kF/HGnLt6StIWEfKw==}
+  /@vlcn.io/ws-litefs@0.1.0-next.5:
+    resolution: {integrity: sha512-waaPItphixQ9Qgr9jahVkV9v8DK/ZfUK8QQlB6V8ZCEGdEqAMi5hFGP4WHo2ZCi/P5V5QPLr/2+1382UblETeQ==}
     dependencies:
       '@vlcn.io/crsqlite': 0.15.0-next.2
       '@vlcn.io/ws-common': 0.1.0-next.4
-      '@vlcn.io/ws-server': 0.1.0-next.16
+      '@vlcn.io/ws-server': 0.1.0-next.17
       better-sqlite3: 8.5.2
       chokidar: 3.5.3
       throttle-debounce: 5.0.0
@@ -2140,8 +2140,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@vlcn.io/ws-server@0.1.0-next.16:
-    resolution: {integrity: sha512-44V59udK5G8pqYl6jr1m2DuEsyo2x6uQc3/Kk/vf2tvCggXt9swC0MACw2tzOEihVcozOOnh8bopv6xnN6vWTg==}
+  /@vlcn.io/ws-server@0.1.0-next.17:
+    resolution: {integrity: sha512-AFvNjE2J4ogv4sQAQqZh/KhaI+9Mku1jfAy5W2UJs1PsytBObzhz3QS9Y+uLvT4vr9TxAuwmVnKGoxbGmxzKDw==}
     dependencies:
       '@vlcn.io/crsqlite': 0.15.0-next.2
       '@vlcn.io/ws-common': 0.1.0-next.4
