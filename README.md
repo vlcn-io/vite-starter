@@ -3,7 +3,12 @@
 Getting started with pnpm/npm/yarn create:
 
 ```
+# npm
 npm create @vlcn.io@latest your-app-name
+# pnpm
+pnpm create @vlcn.io your-app-name
+# yarn
+yarn create @vlcn.io your-app-name
 ```
 
 Or, just cloning directly:
