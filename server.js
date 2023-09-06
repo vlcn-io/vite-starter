@@ -24,7 +24,7 @@ const dbCache = attachWebsocketServer(
   server,
   wsConfig,
   dbFactory,
-  precess.env.FLY_APP_NAME != null ? new FSNotify(wsConfig) : null
+  process.env.FLY_APP_NAME != null ? new FSNotify(wsConfig) : null
 );
 createLiteFSWriteService(9000, wsConfig, dbCache);
 
