@@ -5,6 +5,7 @@ import * as http from "http";
 import {
   createLiteFSDBFactory,
   createLiteFSWriteService,
+  FSNotify,
 } from "@vlcn.io/ws-litefs";
 
 const PORT = parseInt(process.env.PORT || "8080");
@@ -17,11 +18,14 @@ const wsConfig = {
   schemaFolder: "./src/schemas",
   pathPattern: /\/sync/,
   appName: process.env.FLY_APP_NAME || undefined,
-  // notifyPat: process.env.FLY_APP_NAME != null ? "*-pos" : undefined,
-  notifyPolling: process.env.FLY_APP_NAME != null,
 };
 const dbFactory = await createLiteFSDBFactory(9000, wsConfig);
-const dbCache = attachWebsocketServer(server, wsConfig, dbFactory);
+const dbCache = attachWebsocketServer(
+  server,
+  wsConfig,
+  dbFactory,
+  precess.env.FLY_APP_NAME != null ? new FSNotify(wsConfig) : null
+);
 createLiteFSWriteService(9000, wsConfig, dbCache);
 
 server.listen(PORT, () =>
