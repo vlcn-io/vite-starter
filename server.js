@@ -12,6 +12,8 @@ const PORT = parseInt(process.env.PORT || "8080");
 
 const app = express();
 const server = http.createServer(app);
+// TODO: better way to check for litefs?
+const isLiteFS = process.env.FLY_APP_NAME != null;
 
 const wsConfig = {
   dbFolder: "./dbs",
@@ -19,14 +21,21 @@ const wsConfig = {
   pathPattern: /\/sync/,
   appName: process.env.FLY_APP_NAME || undefined,
 };
-const dbFactory = await createLiteFSDBFactory(9000, wsConfig);
-const dbCache = attachWebsocketServer(
-  server,
-  wsConfig,
-  dbFactory,
-  process.env.FLY_APP_NAME != null ? new FSNotify(wsConfig) : null
-);
-createLiteFSWriteService(9000, wsConfig, dbCache);
+
+let dbCache;
+if (isLiteFS) {
+  const dbFactory = await createLiteFSDBFactory(9000, wsConfig);
+  dbCache = attachWebsocketServer(
+    server,
+    wsConfig,
+    dbFactory,
+    new FSNotify(wsConfig)
+  );
+
+  createLiteFSWriteService(9000, wsConfig, dbCache);
+} else {
+  attachWebsocketServer(server, wsConfig);
+}
 
 server.listen(PORT, () =>
   console.log("info", `listening on http://localhost:${PORT}!`)
