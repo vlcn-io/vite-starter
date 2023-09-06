@@ -17,7 +17,8 @@ const wsConfig = {
   schemaFolder: "./src/schemas",
   pathPattern: /\/sync/,
   appName: process.env.FLY_APP_NAME || undefined,
-  notifyPat: process.env.FLY_APP_NAME != null ? "*-pos" : undefined,
+  // notifyPat: process.env.FLY_APP_NAME != null ? "*-pos" : undefined,
+  notifyPolling: process.env.FLY_APP_NAME != null,
 };
 const dbFactory = await createLiteFSDBFactory(9000, wsConfig);
 const dbCache = attachWebsocketServer(server, wsConfig, dbFactory);
