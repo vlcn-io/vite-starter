@@ -17,8 +17,8 @@ dependencies:
     specifier: 0.1.0-next.17
     version: 0.1.0-next.17
   '@vlcn.io/ws-litefs':
-    specifier: 0.1.0-next.9
-    version: 0.1.0-next.9
+    specifier: 0.1.0-next.10
+    version: 0.1.0-next.10
   '@vlcn.io/ws-server':
     specifier: 0.1.0-next.21
     version: 0.1.0-next.21
@@ -2131,8 +2131,8 @@ packages:
       lib0: 0.2.83
     dev: false
 
-  /@vlcn.io/ws-litefs@0.1.0-next.9:
-    resolution: {integrity: sha512-CZ4wZJqbgwZlNsZ5PIZi3qwuiKdIpn473NJxQlKLKAJtPbiZyRtDOc/67+jNEtVBmR3Q0mk17pmPqLyJ5fJy/Q==}
+  /@vlcn.io/ws-litefs@0.1.0-next.10:
+    resolution: {integrity: sha512-XZNOrNini8F86xtpOPcWxRI9cLJYp4AkMHoZvERg9D/E7pQZT3wX1uCyOMujtTI0qfqp7iCpnxs+tc7k/Lu9lg==}
     dependencies:
       '@vlcn.io/crsqlite': 0.15.0-next.2
       '@vlcn.io/ws-common': 0.1.0-next.4
