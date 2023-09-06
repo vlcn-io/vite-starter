@@ -15,18 +15,18 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    VitePWA({
-      workbox: {
-        globPatterns: [
-          "**/*.js",
-          "**/*.css",
-          "**/*.svg",
-          "**/*.html",
-          "**/*.png",
-          "**/*.wasm",
-        ],
-      },
-    }),
+    // VitePWA({
+    //   workbox: {
+    //     globPatterns: [
+    //       "**/*.js",
+    //       "**/*.css",
+    //       "**/*.svg",
+    //       "**/*.html",
+    //       "**/*.png",
+    //       "**/*.wasm",
+    //     ],
+    //   },
+    // }),
   ],
   server: {
     fs: {
