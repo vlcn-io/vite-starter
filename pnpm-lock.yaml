@@ -1,27 +1,31 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@vlcn.io/crsqlite-wasm':
-    specifier: 0.15.0-next.6
-    version: 0.15.0-next.6
+    specifier: 0.15.1
+    version: 0.15.1
   '@vlcn.io/react':
-    specifier: 3.0.0-next.8
-    version: 3.0.0-next.8(react@18.2.0)
+    specifier: 3.0.1
+    version: 3.0.1(react@18.2.0)
   '@vlcn.io/rx-tbl':
-    specifier: 0.14.0-next.3
-    version: 0.14.0-next.3
+    specifier: 0.14.1
+    version: 0.14.1
   '@vlcn.io/ws-browserdb':
-    specifier: 0.1.0-next.7
-    version: 0.1.0-next.7
+    specifier: 0.1.1
+    version: 0.1.1
   '@vlcn.io/ws-client':
-    specifier: 0.1.0-next.17
-    version: 0.1.0-next.17
+    specifier: 0.1.1
+    version: 0.1.1
   '@vlcn.io/ws-litefs':
-    specifier: 0.1.0-next.11
-    version: 0.1.0-next.11
+    specifier: 0.1.1
+    version: 0.1.1
   '@vlcn.io/ws-server':
-    specifier: 0.1.0-next.21
-    version: 0.1.0-next.21
+    specifier: 0.1.1
+    version: 0.1.1
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -2060,83 +2064,83 @@ packages:
       - supports-color
     dev: true
 
-  /@vlcn.io/crsqlite-wasm@0.15.0-next.6:
-    resolution: {integrity: sha512-247UAX+pOvlP4gkjoTHaM4fi84RM8QC5C4MEhFi1SUGdvN7sn6VFyOFN56ITPehHu4YZWzeF8+1CidFDrfrjbA==}
+  /@vlcn.io/crsqlite-wasm@0.15.1:
+    resolution: {integrity: sha512-pUfZpN+pfwkNJSYgXIG8xwwr+7KxmIjUgeyj82A6WhMjpiHm5vSv20tjTjUpKb0UEsfPGYW0AXfs6wpe+sB7Iw==}
     dependencies:
-      '@vlcn.io/wa-sqlite': 0.21.0-next.1
-      '@vlcn.io/xplat-api': 0.14.0-next.3
+      '@vlcn.io/wa-sqlite': 0.21.0
+      '@vlcn.io/xplat-api': 0.14.1
       async-mutex: 0.4.0
     dev: false
 
-  /@vlcn.io/crsqlite@0.15.0-next.2:
-    resolution: {integrity: sha512-tsPh18i1Zu3Szg8gPRwBbTnDCOgzchRoQPvDvPIGTtDeSdCJUgZ0vpUyAhCkodGAk+2aBha6Tp4h/1g0m+07RQ==}
+  /@vlcn.io/crsqlite@0.15.0:
+    resolution: {integrity: sha512-x76W0L9I152SrABbvxFQ/5zOpFNi2YSH7WTGMLFHclcutWiigP7uwXNrPEIpAp4dMhlFJAj2Ge2IbcJX87XdJQ==}
     requiresBuild: true
     dev: false
 
-  /@vlcn.io/logger-provider@0.1.1-next.0:
-    resolution: {integrity: sha512-hZHwykm7+DHxNx4ltTMGgPat19dzHXD2oAzWePJ5pRNIktFWR3qgNPnjAWK/i0TQvuK2ZC1EamBU4o0AuCNuPA==}
+  /@vlcn.io/logger-provider@0.1.2:
+    resolution: {integrity: sha512-vLYcd3bR97rG8ePEvMDd0xgOinTWaF8quxdSQ939Fa9oIYbcUtLZw5dJ9KsJD6H7Axz8xfltQmgayqdXwiqBsQ==}
     dependencies:
       winston: 3.10.0
     dev: false
 
-  /@vlcn.io/react@3.0.0-next.8(react@18.2.0):
-    resolution: {integrity: sha512-V3iqBUtwZQBtpWe+yWGiKW9EeEQKwYIp1lF7tPHak9H0gSEX1/JfgvncdnQKM0GIV1ERU5bMeSHhPBQoPmfNqA==}
+  /@vlcn.io/react@3.0.1(react@18.2.0):
+    resolution: {integrity: sha512-XVpXQkeEftFYG5drTbsL0LV9EMCkBGh317r889WvtfbB1U9na54lW8DQgbmjWVsYxaxyPbLpDZZzNESex/B7Nw==}
     peerDependencies:
       react: ^18
     dependencies:
-      '@vlcn.io/crsqlite-wasm': 0.15.0-next.6
-      '@vlcn.io/rx-tbl': 0.14.0-next.3
-      '@vlcn.io/typed-sql': 0.2.9
-      '@vlcn.io/ws-client': 0.1.0-next.17
-      '@vlcn.io/xplat-api': 0.14.0-next.3
+      '@vlcn.io/crsqlite-wasm': 0.15.1
+      '@vlcn.io/rx-tbl': 0.14.1
+      '@vlcn.io/typed-sql': 0.2.13
+      '@vlcn.io/ws-client': 0.1.1
+      '@vlcn.io/xplat-api': 0.14.1
       async-mutex: 0.4.0
       react: 18.2.0
     dev: false
 
-  /@vlcn.io/rx-tbl@0.14.0-next.3:
-    resolution: {integrity: sha512-6Ofor9D/lHIpZdOgdDn2xAq7coageYhjoH/4k9k7o+XQrjLA9kVc1sVVVOKP/9sSugKlzDMlUrQsXzFmuQBTAg==}
+  /@vlcn.io/rx-tbl@0.14.1:
+    resolution: {integrity: sha512-sUDMzZR0SWSUOSUOZ+raTSVTQXlN/z0Gk4A0Kol6gMfhnZCJW5hu5wMOjGu2EMR+wWdDVJTfvRsw47Nz10Kb8A==}
     dependencies:
-      '@vlcn.io/xplat-api': 0.14.0-next.3
+      '@vlcn.io/xplat-api': 0.14.1
     dev: false
 
-  /@vlcn.io/typed-sql@0.2.9:
-    resolution: {integrity: sha512-Q5w6leW96ECa6jsIfk+neeqSg1Y/q8VhrbVL2yFBpyWCOv3KkmdpXBbqJW5vCx8ka7M24UZivUoJc1Wkz5bGWw==}
+  /@vlcn.io/typed-sql@0.2.13:
+    resolution: {integrity: sha512-gPwhZ4nmkA9+S5gUGJ5DH/O9EKDXroSB0LiF7nBXtAluISwrb/h+VI6FQY8Pc8TBQcLYbCKHDIF2rWXaFWPrig==}
     dev: false
 
-  /@vlcn.io/wa-sqlite@0.21.0-next.1:
-    resolution: {integrity: sha512-MV+xbvdr3DZCLf3AYDSHg3S86GaYjmW/EeMJzNwOiLHY5WBjvTxVI1KFUmRO1BYZOHabdo4Wq6TPixagYoblbA==}
+  /@vlcn.io/wa-sqlite@0.21.0:
+    resolution: {integrity: sha512-aCeTGIGyi+HOv8wzJQ8n4lG9XqjjBEKVAPLXq/dekW6AM/x0ITA5vAQ7YUhpn9xNq3U1cp5DPIX+vzMkpsRNww==}
     dev: false
 
-  /@vlcn.io/ws-browserdb@0.1.0-next.7:
-    resolution: {integrity: sha512-by44oFSHXEsW9pEmuh75IHOp13dcB+lqsrpnqGCdegdqVcSrqszBDzwPTUKr0E67Ae8A+sGGyifFgTDFecG6dw==}
-    dependencies:
-      '@types/throttle-debounce': 5.0.0
-      '@vlcn.io/crsqlite-wasm': 0.15.0-next.6
-      '@vlcn.io/rx-tbl': 0.14.0-next.3
-      '@vlcn.io/ws-client': 0.1.0-next.17
-      '@vlcn.io/ws-common': 0.1.0-next.4
-      '@vlcn.io/xplat-api': 0.14.0-next.3
-    dev: false
-
-  /@vlcn.io/ws-client@0.1.0-next.17:
-    resolution: {integrity: sha512-NMN/I2t3Nbz/XmkCwjsBP+AggajiCxAcf0jlYVHYQDWsuwfxHIp9008Mqj+GHZlD7ps2/16il+lHIcaUb4rFpA==}
+  /@vlcn.io/ws-browserdb@0.1.1:
+    resolution: {integrity: sha512-8FoyWsA+2STqOxxM394ERPcO9/7cEf9nC6QghT/39873LYVXkMdvXPDfnNg7tCV/zUkRpVu1qq7Od6XXlw1heQ==}
     dependencies:
       '@types/throttle-debounce': 5.0.0
-      '@vlcn.io/ws-common': 0.1.0-next.4
+      '@vlcn.io/crsqlite-wasm': 0.15.1
+      '@vlcn.io/rx-tbl': 0.14.1
+      '@vlcn.io/ws-client': 0.1.1
+      '@vlcn.io/ws-common': 0.1.1
+      '@vlcn.io/xplat-api': 0.14.1
     dev: false
 
-  /@vlcn.io/ws-common@0.1.0-next.4:
-    resolution: {integrity: sha512-O3820IYiu0XKomhAT7n067Q7rLcckHwk7FEbDPbPgNTYhFZTvOYWlQ3of2ZbdgtSx/oUArGWvTnx7njKpvH3eQ==}
+  /@vlcn.io/ws-client@0.1.1:
+    resolution: {integrity: sha512-aKz/mZJ+Qu4Lfg607R6NCxeung12UagFgrh3d5oIUKur01oq+icJzc+XWwQpzqUX/bZUXdahoKKC/35FT60ouw==}
+    dependencies:
+      '@types/throttle-debounce': 5.0.0
+      '@vlcn.io/ws-common': 0.1.1
+    dev: false
+
+  /@vlcn.io/ws-common@0.1.1:
+    resolution: {integrity: sha512-P/tPCGF6rAMNfVCjSrbPIa7yCeEDYVO5BgXWrLIqAhrfOjEYhKwwPilNVn2p7HMbOa8EVRA6pr2pzvMTBzvH/A==}
     dependencies:
       lib0: 0.2.83
     dev: false
 
-  /@vlcn.io/ws-litefs@0.1.0-next.11:
-    resolution: {integrity: sha512-m4LqooeYdpgBpPcx+KXC+GzEksUZs4bPFiNISeaHmBJ8eq/9yt1WCcdsP5mrhyOVMd932oWDib6RZM8ViLNXqA==}
+  /@vlcn.io/ws-litefs@0.1.1:
+    resolution: {integrity: sha512-xLzHzS2AfAsPgBC0517JgIrQCMkA8LGvOGY3JAoZTIGK/TYUd0BvKf7ctSsi+RtFgX3YEPK/Fs/iuGaW7Lvq7g==}
     dependencies:
-      '@vlcn.io/crsqlite': 0.15.0-next.2
-      '@vlcn.io/ws-common': 0.1.0-next.4
-      '@vlcn.io/ws-server': 0.1.0-next.21
+      '@vlcn.io/crsqlite': 0.15.0
+      '@vlcn.io/ws-common': 0.1.1
+      '@vlcn.io/ws-server': 0.1.1
       better-sqlite3: 8.6.0
       chokidar: 3.5.3
       throttle-debounce: 5.0.0
@@ -2146,12 +2150,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@vlcn.io/ws-server@0.1.0-next.21:
-    resolution: {integrity: sha512-I8zTHPUQWApeowmYTw1mMUTe6A/e6WtMpR+S6kQtFkMJjfJi6vHCVRLSoZ0SmJ9MlLXvTfGYg6eoHpsUTYz5dQ==}
+  /@vlcn.io/ws-server@0.1.1:
+    resolution: {integrity: sha512-yEspzlVRcT/Z52dre+LJa7XsDpMy3HqZX9qr5rAxuRnjKorcJ9xEeKbGdA39HPEZ1O0zhWJkkJ8mo0vcxFfTbQ==}
     dependencies:
-      '@vlcn.io/crsqlite': 0.15.0-next.2
-      '@vlcn.io/logger-provider': 0.1.1-next.0
-      '@vlcn.io/ws-common': 0.1.0-next.4
+      '@vlcn.io/crsqlite': 0.15.0
+      '@vlcn.io/logger-provider': 0.1.2
+      '@vlcn.io/ws-common': 0.1.1
       better-sqlite3: 8.6.0
       chokidar: 3.5.3
       throttle-debounce: 5.0.0
@@ -2162,8 +2166,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@vlcn.io/xplat-api@0.14.0-next.3:
-    resolution: {integrity: sha512-n8okFJo2bhXxvDDW6BXCGloWWmfca+fjqzo1krDSJfMLRNaS7Bio7aUYr461tvVxjP+OpZ/KayZRAUqDUEq7OA==}
+  /@vlcn.io/xplat-api@0.14.1:
+    resolution: {integrity: sha512-Y63WDk0kkt6i1WzlD6StiFXXHP+YJaDO/SW0S9+dyoEZDvkDLHr1HrKsfBn1JreBnbCd5fOhm/gRP49m1Ksfhg==}
     dependencies:
       comlink: 4.4.1
     dev: false
@@ -4946,7 +4950,3 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
