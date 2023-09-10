@@ -7,21 +7,7 @@ import { DBProvider } from "@vlcn.io/react";
 import React from "react";
 
 /**
- * Returns the ID of a remote database to sync with or creates a new one
- * if none exists.
- *
- * This ID should be a 16 byte hex string.
- *
- * Ways you can get a remote db:
- * - Harcode the id in your app (not recommended)
- * - Return a DBID for the user after they log in
- * - Get it through link sharing, qr code, etc.
- *
- * Here we look at the URL for a DBID. If one does not exist we check localStorage if the user
- * ever opened one. If not, we randomly generate one and return it.
- *
- * Randomly generating a DBID will cause new databases to be created on both the client
- * and server.
+ * Generates a random room name to sync with or pulls one from local storage.
  */
 function getRoom(hash: HashBag): string {
   return hash.room || localStorage.getItem("room") || newRoom();
