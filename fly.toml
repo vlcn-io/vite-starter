@@ -3,8 +3,8 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "vite-litefs-starter"
-primary_region = "atl"
+app = "vite-starter"
+primary_region = "iad"
 kill_signal = "SIGINT"
 kill_timeout = "5s"
 
@@ -13,13 +13,12 @@ kill_timeout = "5s"
 
 [env]
   PORT = "8080"
-  PRIMARY_REGION = "atl"
+  PRIMARY_REGION = "iad"
 
 [[mounts]]
-  destination = "/var/lib/litefs"
-  encrypted = false
-  processes = []
-  source = "litefs"
+  source = "dbs_machines"
+  destination = "/app/dbs"
+  processes = ["app"]
 
 [[services]]
   protocol = "tcp"
