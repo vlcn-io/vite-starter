@@ -25,13 +25,8 @@ LABEL fly_launch_runtime="nodejs"
 COPY --from=builder /usr/local/node /usr/local/node
 COPY --from=builder /app /app
 
-RUN apt-get update; apt install -y fuse3 ca-certificates curl
-COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
-ADD etc/litefs.yml /etc/litefs.yml
-
 WORKDIR /app
 ENV NODE_ENV production
 ENV PATH /usr/local/node/bin:$PATH
 
-ENTRYPOINT litefs mount
-# CMD [ "pnpm", "run", "start" ]
+CMD [ "pnpm", "run", "start" ]
