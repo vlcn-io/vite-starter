@@ -4,7 +4,7 @@ import "./index.css";
 
 import schemaContent from "./schemas/main.sql?raw";
 import { DBProvider } from "@vlcn.io/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 /**
  * Generates a random room name to sync with or pulls one from local storage.
@@ -13,28 +13,51 @@ function getRoom(hash: HashBag): string {
   return hash.room || localStorage.getItem("room") || newRoom();
 }
 
-const hash = parseHash();
-const room = getRoom(hash);
-if (room != hash.room) {
-  hash.room = room;
-  window.location.hash = writeHash(hash);
+function hashChanged() {
+  const hash = parseHash();
+  const room = getRoom(hash);
+  if (room != hash.room) {
+    hash.room = room;
+    window.location.hash = writeHash(hash);
+  }
+  localStorage.setItem("room", room);
+  return room;
 }
-localStorage.setItem("room", room);
+const room = hashChanged();
 
 // Launch our app.
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
+    <Root />
+  </React.StrictMode>
+);
+
+function Root() {
+  const [theRoom, setTheRoom] = useState(room);
+  useEffect(() => {
+    const cb = () => {
+      const room = hashChanged();
+      if (room != theRoom) {
+        setTheRoom(room);
+      }
+    };
+    addEventListener("hashchange", cb);
+    return () => {
+      removeEventListener("hashchange", cb);
+    };
+  }, []); // ignore -- theRoom is managed by the effect
+
+  return (
     <DBProvider
-      dbname={room}
+      dbname={theRoom}
       schema={{
         name: "main.sql",
         content: schemaContent,
       }}
-    >
-      <App dbname={room} />
-    </DBProvider>
-  </React.StrictMode>
-);
+      Render={() => <App dbname={theRoom} />}
+    ></DBProvider>
+  );
+}
 
 type HashBag = { [key: string]: string };
 function parseHash(): HashBag {
