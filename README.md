@@ -27,4 +27,4 @@ What you get:
 
 Demo Video: [![example scaffolding result](https://img.youtube.com/vi/QJBQLYmXReI/0.jpg)](https://www.youtube.com/watch?v=QJBQLYmXReI)
 
-Deployed Scaffolding: https://vite-starter.fly.dev/ Try it out! Collaborate between all your devices.
+Deployed Scaffolding: https://vite-starter2.fly.dev/ Try it out! Collaborate between all your devices.
