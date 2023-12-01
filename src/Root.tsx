@@ -1,5 +1,5 @@
 import App from "./App.tsx";
-import schemaContent from "./schemas/main.sql?raw";
+import schemaContent from "./schemas/main2.sql?raw";
 import { DBProvider } from "@vlcn.io/react";
 import { useEffect, useState } from "react";
 
@@ -41,7 +41,7 @@ export default function Root() {
     <DBProvider
       dbname={theRoom}
       schema={{
-        name: "main.sql",
+        name: "main2.sql",
         content: schemaContent,
       }}
       Render={() => <App dbname={theRoom} />}
