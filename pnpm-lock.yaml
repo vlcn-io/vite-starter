@@ -18,8 +18,8 @@ dependencies:
     specifier: 0.2.0
     version: 0.2.0
   '@vlcn.io/ws-server':
-    specifier: 0.2.2
-    version: 0.2.2
+    specifier: 0.2.3
+    version: 0.2.3
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -1901,8 +1901,8 @@ packages:
       async-mutex: 0.4.0
     dev: false
 
-  /@vlcn.io/crsqlite@0.16.1:
-    resolution: {integrity: sha512-ju6dONV/xq3haiHUVkY/mUuz14lXqak1GAyCsY8YqEoZUUORIx8nXa8aIOM6A+n31+KreTsJ4qSiG0VCnZLveA==}
+  /@vlcn.io/crsqlite@0.16.3:
+    resolution: {integrity: sha512-1rKylRr2LyW5kwh/a6ZFmvt7kFK+aKLGkz9+O1w9EFVdH11SMUg6MfvxTfoczKCyb3/E5qvdOk2NDW/Zin6OjQ==}
     requiresBuild: true
     dev: false
 
@@ -1964,11 +1964,11 @@ packages:
       lib0: 0.2.88
     dev: false
 
-  /@vlcn.io/ws-server@0.2.2:
-    resolution: {integrity: sha512-pRdaKVMuVEU6ij0zdnRAEXebLmCShcEZNMDxGBkQy9/wAXjMFsRdpw6RcbHvcNfLHUrbGurc+3dB3dJQa8QtPQ==}
+  /@vlcn.io/ws-server@0.2.3:
+    resolution: {integrity: sha512-jJkZN32hq4k1Tk1W/BmgzCJ91bIs2GLZsvIQdpA7QNbO5aJxF5qQfxiy8PMWYe4UJUYiHb5mQcF+bx1iPP7Yrw==}
     dependencies:
       '@types/better-sqlite3': 7.6.8
-      '@vlcn.io/crsqlite': 0.16.1
+      '@vlcn.io/crsqlite': 0.16.3
       '@vlcn.io/logger-provider': 0.2.0
       '@vlcn.io/ws-common': 0.2.0
       better-sqlite3: 9.2.2
